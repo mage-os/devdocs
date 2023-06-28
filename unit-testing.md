@@ -11,8 +11,8 @@
 - [DocBlock Annotations](#docblock-annotations)
 - [Code Coverage](#code-coverage)
 - [Run Unit Tests in CI](#run-unit-tests-in-ci)
-    - [GitHub Actions](#github-actions)
-    - [GitLab Pipelines](#gitlab-pipelines)
+  - [GitHub Actions](#github-actions)
+  - [GitLab Pipelines](#gitlab-pipelines)
 - [Summary](#summary)
 
 ## Overview
