@@ -1,4 +1,10 @@
+
 # Contributor & Reviewer Guide
+
+- [Code contributions](#code-contributions)
+- [Code reviews](#code-reviews)
+- [Issues](#issues)
+
 Mage-OS guidelines for code contributors and reviewers.
 
 ## Code contributions
