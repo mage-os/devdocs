@@ -42,6 +42,38 @@ used to group related routes together. In most cases, you will use either `stand
 example, `<router id="standard">` defines a router for the frontend area, whereas `<router id="admin">` defines a router
 for the admin area.
 
+There are the following routers in Magento 2:
+
+**Admin Router**: The admin router is responsible for processing requests to the Magento Admin panel. It's configured in
+the
+`app/etc/di.xml` file and any additional admin routers are added in the adminhtml/routes.xml file. The default frontName
+for the admin router is "admin" but this can be changed for security reasons.
+
+**Standard Router**: The standard router is responsible for processing requests to the frontend of the Magento website.
+It
+handles all the routing for CMS pages, product pages, category pages, and customer account pages.
+
+**CMS Router**: The CMS router is specifically for routing requests to CMS pages such as Home page, About Us, and
+Contact
+Us.
+
+**Url Rewrite Router**: The URL rewrite router is used for routing requests that have been rewritten for SEO purposes.
+For
+example, if you have a product page with a URL like yourstore.com/catalog/product/view/id/50, you could rewrite it to
+yourstore.com/my-awesome-product. The URL rewrite router is responsible for interpreting requests to these SEO-friendly
+URLs and forwarding them to the correct place.
+
+**Default Router**: The default router is the last router to be processed. If no other router is able to process the
+request, the default router will process it. This is usually a 404 page not found error, but it could be configured to
+redirect to a custom page.
+
+> **Note**  
+> The order of these routers matter. Each request in Magento is processed in the following
+> order: `admin`, `standard`, `cms`,
+> `url rewrite`, and `default`. If the request matches a route in the admin router, for example, it will be processed
+> there
+> and not passed to any subsequent routers.
+
 ## `<route>` Element
 
 The `<route>` element represents a specific route in Magento 2. It consists of three attributes: `id`, `frontName`, and
