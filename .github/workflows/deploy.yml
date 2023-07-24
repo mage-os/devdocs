@@ -23,3 +23,4 @@ jobs:
             php artisan optimize
             php artisan optimize:clear
             php artisan sitemap:generate
+            php artisan optimize:clear
