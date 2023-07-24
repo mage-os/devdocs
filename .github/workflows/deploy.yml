@@ -21,4 +21,5 @@ jobs:
             cd /var/www/share/devdocs.mage-os.org/devdocs
             ./bin/checkout_latest_docs.sh
             php artisan optimize
+            php artisan optimize:clear
             php artisan sitemap:generate
