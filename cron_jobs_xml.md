@@ -1,4 +1,6 @@
-# Cron Jobs XML Reference Documentation
+# `cron_jobs.xml` Reference Documentation
+
+[TOC]
 
 ## Introduction
 

@@ -1,4 +1,6 @@
-# Cache.xml Reference Documentation
+# `cache.xml` Reference Documentation
+
+[TOC]
 
 ## Introduction
 
@@ -73,7 +75,6 @@ attribute to either `true` or `false` to enable or disable the cache type, respe
 ### Example: Disabling the `block_html` Cache Type
 
 ```xml
-
 <type name="block_html" enabled="false"/>
 ```
 
