@@ -1,21 +1,6 @@
 # Core Features of Magento 2
 
-- [Core Features of Magento 2](#core-features-of-magento-2)
-    * [Catalog Management](#catalog-management)
-    * [Checkout, Payment, and Shipping](#checkout-payment-and-shipping)
-    * [SEO and Marketing](#seo-and-marketing)
-    * [Mobile Commerce](#mobile-commerce)
-    * [Analytics and Reporting](#analytics-and-reporting)
-    * [International Support](#international-support)
-    * [Customer Accounts](#customer-accounts)
-    * [Order Management](#order-management)
-    * [Security](#security)
-    * [Developer Tools](#developer-tools)
-    * [Multistore Functionality](#multistore-functionality)
-    * [Content Staging and Preview](#content-staging-and-preview)
-    * [ElasticSearch](#elasticsearch)
-    * [Page Builder](#page-builder)
-    * [Customer Loyalty Tools](#customer-loyalty-tools)
+[TOC]
 
 Magento 2 is equipped with an extensive set of powerful features, designed to provide businesses with unparalleled
 flexibility, scalability, and control over their eCommerce platform. Here, we delve into a few key features.

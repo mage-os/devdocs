@@ -1,84 +1,121 @@
-# Basic Configuration in Magento 2
+# Basic Configuration Documentation
 
-- [Global Configuration: env.php](#global-configuration-env.php)
-- [Application Configuration: config.php](#application-configuration-config.php)
-- [Module Configuration: config.xml](#module-configuration-config.xml)
+[TOC]
 
-Magento 2, a highly flexible PHP-based e-commerce framework, provides a wealth of configuration options that allow you
-to tailor your e-commerce platform precisely to your needs. This guide aims to provide you with a comprehensive
-understanding of Magento 2's basic configuration.
+This document provides instructions on how to perform basic configuration in Magento 2. Magento 2 is a powerful
+e-commerce platform built on PHP, and understanding how to configure it is essential for creating a successful online
+store. In this guide, we will cover the most important configuration settings and provide concrete examples and code
+snippets to help you understand and implement them.
 
-## Global Configuration: env.php
+## System Configuration
 
-Magento's global configuration is located in the `app/etc/env.php` file. This file contains settings that apply to the
-entire Magento application, such as backend frontname, install date, crypt key, session save location, and more.
+The system configuration in Magento 2 allows you to set up and manage various aspects of your e-commerce store.
 
-### Example
+To access the system configuration, follow these steps:
 
-```php
-return [
-  'backend' =>
-    [
-        'frontName' => 'admin',
-    ],
-  'install' =>
-    [
-        'date' => 'Fri, 25 Jun 2023 19:25:14 +0000',
-    ],
-  // ...
-];
-```
+1. Log in to the Magento 2 admin panel.
+2. Navigate to **Stores** > **Configuration**.
 
-In the above example, `'frontName' => 'admin'`, is the URL segment for the admin panel.
+### Example: Changing the Base URL
 
-## Application Configuration: config.php
+One of the most crucial system configuration settings is the Base URL. This setting determines the URL that customers
+will use to access your store.
 
-Magento's `config.php` file is located in the same directory as `env.php` (`app/etc/`). This file is responsible for
-managing the list of installed modules and their `enable/disable` status.
+To change the Base URL:
 
-```php
-return [
-  'modules' => [
-    'Magento_Store' => 1,
-    'Magento_AdminNotification' => 1,
-    //...
-  ],
-];
-```
+1. Go to **Stores** > **Configuration**.
+2. In the left-hand menu, click on **General** > **Web**.
+3. Expand the **Base URLs (Secure)** or **Base URLs (Unsecure)** section, depending on your requirements.
+4. Enter the desired URL in the **Base URL** field.
+5. Click on **Save Config**.
 
-In this configuration, `'Magento_Store'` and `'Magento_AdminNotification'` modules are enabled as indicated by `'1'`. 
-If a module is disabled, it would be indicated by `'0'`.
+## Store Configuration
 
-## Module Configuration: config.xml
+Store configuration settings in Magento 2 allow you to customize various aspects related to your store's appearance and
+functionality.
 
-Each module in Magento 2 has its own `config.xml` file which is found in the `etc` directory of the respective module.
-This file is used to manage module-specific configurations, such as default values for the module's settings.
+To access the store configuration, follow these steps:
 
-### Example
+1. Log in to the Magento 2 admin panel.
+2. Navigate to **Stores** > **Configuration**.
 
-Let's take a look at an example configuration in a `config.xml` file:
+### Example: Changing the Store Name
 
-```xml
+The store name is displayed prominently on your website and should reflect your brand and business.
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
-    <default>
-        <catalog>
-            <frontend>
-                <list_per_page>12</list_per_page>
-            </frontend>
-        </catalog>
-    </default>
-</config>
-```
+To change the store name:
 
-In this example, we have the `<list_per_page>12</list_per_page>` configuration inside the `<catalog><frontend>` path.
-This particular setting dictates the default number of products displayed per page on the product list.
+1. Go to **Stores** > **Configuration**.
+2. In the left-hand menu, click on **General** > **Store Information**.
+3. Enter the desired store name in the **Store Name** field.
+4. Click on **Save Config**.
 
-Remember: After modifying a module's `config.xml file`, it's necessary to clear Magento's cache (System > Tools > Cache
-Management) to apply the changes.
+## Catalog Configuration
 
-Before adjusting these configurations, remember that they can significantly impact your application's functionality and
-behavior. It's highly recommended that you have a thorough understanding of Magento 2's architecture and always test
-these changes in a development or staging environment before applying them to a live store. This ensures stability and
-can prevent unintended effects on the end-user experience.
+Catalog configuration settings in Magento 2 allow you to manage how your products are displayed, categorized, and
+priced.
+
+To access the catalog configuration, follow these steps:
+
+1. Log in to the Magento 2 admin panel.
+2. Navigate to **Stores** > **Configuration**.
+
+### Example: Setting Up Product Categories
+
+Product categories help customers navigate your store and find the products they are looking for. To set up product
+categories:
+
+1. Go to **Stores** > **Configuration**.
+2. In the left-hand menu, click on **Catalog** > **Catalog**.
+3. Expand the **Category Top Navigation** section.
+4. Enable the **Enable Category Top Navigation Menu** option.
+5. Click on **Save Config**.
+
+## Payment Configuration
+
+Payment configuration settings in Magento 2 allow you to set up and manage the payment methods available to your
+customers.
+
+To access the payment configuration, follow these steps:
+
+1. Log in to the Magento 2 admin panel.
+2. Navigate to **Stores** > **Configuration**.
+
+### Example: Enabling PayPal Express Checkout
+
+PayPal Express Checkout is a popular payment method. To enable PayPal Express Checkout:
+
+1. Go to **Stores** > **Configuration**.
+2. In the left-hand menu, click on **Sales** > **Payment Methods**.
+3. Expand the **PayPal Express Checkout** section.
+4. Set the **Enabled** option to **Yes**.
+5. Enter your PayPal API credentials in the appropriate fields.
+6. Click on **Save Config**.
+
+## Shipping Configuration
+
+Shipping configuration settings in Magento 2 allow you to manage how shipping is calculated and handled in your store.
+
+To access the shipping configuration, follow these steps:
+
+1. Log in to the Magento 2 admin panel.
+2. Navigate to **Stores** > **Configuration**.
+
+### Example: Configuring Flat Rate Shipping
+
+Flat rate shipping charges a fixed rate for shipping regardless of the order's weight or location. To configure flat
+rate shipping:
+
+1. Go to **Stores** > **Configuration**.
+2. In the left-hand menu, click on **Sales** > **Shipping Methods**.
+3. Expand the **Flat Rate** section.
+4. Set the **Enabled** option to **Yes**.
+5. Configure the **Title**, **Method Name**, **Price**, and other relevant fields.
+6. Click on **Save Config**.
+
+## Conclusion
+
+In this documentation, we have covered the basic configuration settings in Magento 2, including system, store, catalog,
+payment, and shipping configurations. By following the provided instructions and using the code snippets and examples,
+you can easily configure your Magento 2 store to meet your specific requirements. For more advanced configuration
+options, refer to the official Magento 2 documentation or consult with a Magento developer.

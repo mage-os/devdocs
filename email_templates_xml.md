@@ -1,4 +1,6 @@
-# Email Templates XML Reference Documentation
+# `email_templates.xml` Reference Documentation
+
+[TOC]
 
 This reference documentation provides detailed information on the structure and usage of the `email_templates.xml` file
 in Magento 2. It is intended for developers familiar with PHP and Magento 2, and aims to provide authoritative and

@@ -1,5 +1,7 @@
 # Extension Attributes Reference Documentation
 
+[TOC]
+
 ## Introduction
 
 Extension attributes in Magento 2 provide a way to extend the functionality of existing data structures, such as models
