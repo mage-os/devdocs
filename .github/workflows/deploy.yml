@@ -1,0 +1,26 @@
+name: "🚀 - Deploy"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: "✏️ - Update content"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "🛸 - Pull latest content"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: | 
+            cd /var/www/share/devdocs.mage-os.org/devdocs
+            ./bin/checkout_latest_docs.sh
+            php artisan optimize
+            php artisan optimize:clear
+            php artisan sitemap:generate
+            php artisan optimize:clear

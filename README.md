@@ -1,5 +1,7 @@
 # Mage-OS Documentation
 
+[TOC]
+
 You can find the online version of the Mage-OS documentation at [https://devdocs.mage-os.org/](https://devdocs.mage-os.org)
 
 ## Markup and Features
