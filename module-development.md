@@ -55,7 +55,7 @@ an example `module.xml`:
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Vendor_Module" setup_version="1.0.0">
+    <module name="Vendor_Module">
         <sequence>
             <module name="Magento_Cms"/>
         </sequence>
@@ -63,7 +63,7 @@ an example `module.xml`:
 </config>
 ```
 
-In this example, `Vendor_Module` is the module's name, and `1.0.0` is the version. The `<sequence>` tag defines any
+In this example, `Vendor_Module` is the module's name. The `<sequence>` tag defines any
 modules that your module depends on. In this case, it depends on `Magento_Cms`.
 
 ## Module Configuration
