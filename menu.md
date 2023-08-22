@@ -12,7 +12,6 @@ The `menu.xml` file uses XML tags to define the structure of the menu. Each menu
 the `<menu>` tag. Here is an example of a simple menu structure:
 
 ```xml
-
 <config>
     <menu>
         <add id="Vendor_Module::menu_item1"
@@ -54,7 +53,6 @@ The `<resource>` tag is used to specify the ACL resource that controls access to
 define a unique ACL resource for each menu item to manage user permissions effectively. For example:
 
 ```xml
-
 <add id="Vendor_Module::menu_item3"
      title="Menu Item 3"
      module="Vendor_Module"
@@ -70,7 +68,6 @@ You can add icons to your menu items using the `<add>` tag's `resource` attribut
 icons provided by the Font Awesome library. For example:
 
 ```xml
-
 <add id="Vendor_Module::menu_item4"
      title="Menu Item 4"
      module="Vendor_Module"
@@ -92,7 +89,6 @@ You can create submenus by adding multiple levels of menu items. Each submenu is
 within the parent menu item's `<add>` tag. For example:
 
 ```xml
-
 <add id="Vendor_Module::menu_item5"
      title="Menu Item 5"
      module="Vendor_Module"

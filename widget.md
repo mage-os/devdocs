@@ -19,7 +19,6 @@ The `<widget>` element is the main building block of the `widget.xml` file. It d
 is an example:
 
 ```xml
-
 <widget id="example_widget" class="Vendor\ExampleWidget\Block\Widget\Example">
     <label translate="true">Example Widget</label>
     <description translate="true">This is an example widget.</description>
@@ -59,7 +58,6 @@ The `<parameter>` element defines a configuration option for the widget. It can 
 select, boolean, etc. Here is an example:
 
 ```xml
-
 <parameters>
     <parameter name="title" xsi:type="text" required="true">
         <label translate="true">Title</label>
@@ -88,7 +86,6 @@ The `<container>` element defines a layout container where the widget can be pla
 template file for rendering the widget. Here is an example:
 
 ```xml
-
 <containers>
     <container name="content.top">
         <template name="widget/example.phtml">
@@ -109,7 +106,6 @@ The `<block>` element specifies the block types supported by the widget. The sup
 blocks within the widget. Here is an example:
 
 ```xml
-
 <supportedBlocks>
     <block name="catalog/product_list"/>
     <block name="cms/block"/>

@@ -68,7 +68,6 @@ To customize the search index in Magento 2, you can create a custom module and d
 file specifies the attributes to be included in the search index. Here's an example `search_request.xml` file:
 
 ```xml
-
 <requests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="urn:magento:framework:Search/etc/search_request.xsd">
     <request query="quick_search_container">

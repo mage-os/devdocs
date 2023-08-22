@@ -51,7 +51,6 @@ For example, to add a new block to the homepage, create a layout file named `cms
 directory. Inside the file, define the block using XML tags:
 
 ```xml
-
 <referenceContainer name="content">
     <block class="Magento\Framework\View\Element\Template" name="custom.block" template="custom_block.phtml"/>
 </referenceContainer>

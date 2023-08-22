@@ -29,7 +29,6 @@ corresponding controller action.
 To create an admin route, define the route in `adminhtml/routes.xml` in your custom module:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
@@ -72,7 +71,6 @@ appearance of the page.
 To create a layout file, create `your_module_controller_action.xml` in `Your/Module/view/adminhtml/layout/`:
 
 ```xml
-
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
@@ -146,7 +144,6 @@ access different functionalities easily.
 To add a custom menu item, create `menu.xml` in `Your/Module/etc/adminhtml/`:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
@@ -167,7 +164,6 @@ specific actions or access certain pages.
 To define an ACL, create `acl.xml` in `Your/Module/etc/adminhtml/`:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
     <acl>

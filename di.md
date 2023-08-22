@@ -24,7 +24,6 @@ defined. Within a `<type>` element, you can have multiple `<arguments>` and `<pl
 Here's an example of the basic structure of a `di.xml` file:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="{Class/Interface}">
@@ -45,7 +44,6 @@ For example, if we want to configure dependencies for the `Magento\Catalog\Api\P
 the `<type>` element would look like this:
 
 ```xml
-
 <type name="Magento\Catalog\Api\ProductRepositoryInterface">
     <!-- Define dependencies here -->
 </type>
@@ -60,7 +58,6 @@ Here's an example of how to define constructor arguments for the `Magento\Catalo
 interface:
 
 ```xml
-
 <type name="Magento\Catalog\Api\ProductRepositoryInterface">
     <arguments>
         <argument xsi:type="object" name="productFactory">Magento\Catalog\Model\ProductFactory</argument>
@@ -84,7 +81,6 @@ implements the plugin), and the name of the method you want to intercept.
 Here's an example of how to define a plugin for the `Magento\Catalog\Api\ProductRepositoryInterface` interface:
 
 ```xml
-
 <type name="Magento\Catalog\Api\ProductRepositoryInterface">
     <plugin name="my_plugin" type="MyVendor\MyModule\Plugin\ProductRepositoryPlugin" sortOrder="10" disabled="false"/>
 </type>

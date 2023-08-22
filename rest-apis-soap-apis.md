@@ -107,7 +107,6 @@ Let's consider an example SOAP API method that retrieves user information.
 **Response:**
 
 ```xml
-
 <getUserInfoResponse>
     <getUserInfoResult>
         <id>123</id>

@@ -37,7 +37,6 @@ To create a custom theme in Magento 2, follow these steps:
    configuration options. Here's an example:
 
 ```xml
-
 <theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
     <title>MyTheme</title>
@@ -74,7 +73,6 @@ makes it easier to maintain themes. To inherit from a parent theme, specify it i
 theme using the `<parent>` tag. Here's an example:
 
 ```xml
-
 <parent>Magento/luma</parent>
 ```
 
@@ -95,7 +93,6 @@ are used to specify the location of blocks within containers.
 Here's an example of a simple layout XML file that adds a block to the homepage:
 
 ```xml
-
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
@@ -160,7 +157,6 @@ To configure your theme, create a file called `view.xml` within your theme's `et
 settings, such as image sizes, color swatches, and other visual aspects of your theme. Here's an example:
 
 ```xml
-
 <view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
     <media>

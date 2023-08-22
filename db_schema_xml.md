@@ -37,7 +37,6 @@ element can have the following attributes:
 Here's an example of defining a table in the `db_schema.xml` file:
 
 ```xml
-
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="my_module_table" resource="default" engine="innodb">
@@ -60,7 +59,6 @@ attributes:
 Here's an example of defining columns within a table:
 
 ```xml
-
 <table name="my_module_table" resource="default" engine="innodb">
     <column name="id" dataType="int" nullable="false" comment="ID"/>
     <column name="name" dataType="varchar" length="255" nullable="true"/>
@@ -81,7 +79,6 @@ the following attributes:
 Here's an example of defining an index within a table:
 
 ```xml
-
 <table name="my_module_table" resource="default" engine="innodb">
     <column name="id" dataType="int" nullable="false" comment="ID"/>
     <column name="name" dataType="varchar" length="255" nullable="true"/>
@@ -108,7 +105,6 @@ The `constraint` element can have the following attributes:
 Here's an example of defining a foreign key constraint within a table:
 
 ```xml
-
 <table name="my_module_table" resource="default" engine="innodb">
     <column name="id" dataType="int" nullable="false" comment="ID"/>
     <column name="name" dataType="varchar" length="255" nullable="true"/>

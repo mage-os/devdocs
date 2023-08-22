@@ -46,7 +46,6 @@ are defining the attribute. The `code` and `type` define the attribute itself.
 Here is an example of adding a custom attribute to the Product entity:
 
 ```xml
-
 <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
     <attribute code="custom_attribute" type="string"/>
 </extension_attributes>

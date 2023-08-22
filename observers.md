@@ -96,7 +96,6 @@ If you have multiple observers for the same event, you can define the execution 
 attribute in the observer registration. Observers with lower sequence values will execute first.
 
 ```xml
-
 <observer name="first_observer" instance="Vendor\Module\Observer\FirstObserver" sequence="10"/>
 <observer name="second_observer" instance="Vendor\Module\Observer\SecondObserver" sequence="20"/>
 ```

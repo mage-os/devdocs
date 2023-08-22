@@ -25,7 +25,6 @@ optional attributes like `class`, `template`, and `cacheable`.
 Example:
 
 ```xml
-
 <block name="custom.block" class="Vendor\Namespace\Block\CustomBlock" template="Vendor_Namespace::custom_block.phtml"/>
 ```
 
@@ -44,7 +43,6 @@ attributes like `htmlTag`, `before`, `after`, and `label`.
 Example:
 
 ```xml
-
 <container name="custom.container" htmlTag="div" label="Custom Container">
     <block name="custom.block" class="Vendor\Namespace\Block\CustomBlock"
            template="Vendor_Namespace::custom_block.phtml"/>
@@ -64,7 +62,6 @@ modify blocks or containers defined by other modules.
 Example:
 
 ```xml
-
 <referenceContainer name="header.container">
     <container name="custom.container" htmlTag="div" label="Custom Container" after="logo"/>
 </referenceContainer>
@@ -82,7 +79,6 @@ include `htmlTag`, `before`, `after`, `label`, `as`, `output`, and `cacheable`.
 Example:
 
 ```xml
-
 <block name="custom.block" class="Vendor\Namespace\Block\CustomBlock" template="Vendor_Namespace::custom_block.phtml"
        htmlTag="div" before="-" after="footer.container" label="Custom Block" as="custom.block.alias" output="toHtml"
        cacheable="true"/>

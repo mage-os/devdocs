@@ -16,7 +16,6 @@ Each `<fieldset>` element can contain one or more `<container>` elements, and ea
 or more `<field>` elements. Here is an example of the basic structure of a `fieldset.xml` file:
 
 ```xml
-
 <fieldset>
     <container name="container_name">
         <field name="field_name" sortOrder="sort_order" component="component_name"/>
@@ -34,7 +33,6 @@ Each `fieldset.xml` file can contain multiple `<fieldset>` elements. Here is an 
 multiple `<fieldset>` elements:
 
 ```xml
-
 <fieldset>
     <!-- First fieldset definition -->
 </fieldset>
@@ -51,7 +49,6 @@ and structure the fields. Each `<container>` element can contain one or more `<f
 a `fieldset.xml` file with a `<container>` element:
 
 ```xml
-
 <fieldset>
     <container name="billing_information">
         <field name="first_name" sortOrder="10" component="Magento_Ui/js/form/element/abstract"/>
@@ -67,7 +64,6 @@ component of the field. The name attribute is mandatory, while the sortOrder and
 is an example of a `fieldset.xml` file with a `<field>` element:
 
 ```xml
-
 <fieldset>
     <container name="billing_information">
         <field name="first_name" sortOrder="10" component="Magento_Ui/js/form/element/abstract"/>
@@ -82,7 +78,6 @@ the container or field within the `fieldset.xml` file. The name should be a stri
 For example, a field with the name "first_name" can be defined as follows:
 
 ```xml
-
 <fieldset>
     <container name="billing_information">
         <field name="first_name" sortOrder="10" component="Magento_Ui/js/form/element/abstract"/>
@@ -98,7 +93,6 @@ optional, and if not specified, fields will be rendered in the order they are de
 is an example of a `fieldset.xml` file with fields sorted using the `sortOrder` attribute:
 
 ```xml
-
 <fieldset>
     <container name="billing_information">
         <field name="first_name" sortOrder="10" component="Magento_Ui/js/form/element/abstract"/>
@@ -114,7 +108,6 @@ The component determines the behavior and appearance of the field. The value of 
 valid JavaScript component path. Here is an example of a `fieldset.xml` file with a field component specified:
 
 ```xml
-
 <fieldset>
     <container name="billing_information">
         <field name="first_name" sortOrder="10" component="Magento_Ui/js/form/element/abstract"/>
@@ -129,7 +122,6 @@ the "customer_account_edit" form. We can achieve this by creating a `fieldset.xm
 following content:
 
 ```xml
-
 <fieldset>
     <container name="customer">
         <field name="age" sortOrder="70" component="Magento_Ui/js/form/element/input"/>
@@ -140,7 +132,6 @@ following content:
 After creating the `fieldset.xml` file, we need to declare it in the module's `di.xml` file as follows:
 
 ```xml
-
 <type name="Magento\Customer\Block\Form\Edit">
     <arguments>
         <argument name="formCode" xsi:type="const">\Magento\Customer\Block\Form::FORM_CODE_EDIT</argument>
