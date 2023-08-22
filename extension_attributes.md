@@ -126,7 +126,6 @@ class CustomAttributePlugin
 3. Defining an observer for extension attribute changes:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="extension_attribute_change_event">

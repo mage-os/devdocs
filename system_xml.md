@@ -27,7 +27,6 @@ section.
 Here is an example of a basic system.xml file structure:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
@@ -50,7 +49,6 @@ Each `<section>` element must contain a unique `id` attribute to identify the se
 Here is an example of defining a configuration section named "General" with an associated group:
 
 ```xml
-
 <section id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
     <label>General Settings</label>
     <tab>my_custom_tab</tab>
@@ -81,7 +79,6 @@ Each `<field>` element must have a unique `id` attribute to identify the field.
 Here is an example of defining a text field within a group:
 
 ```xml
-
 <field id="my_text_field" translate="label" type="text" sort_order="10" show_in_default="1" show_in_website="1"
        show_in_store="1">
     <label>My Text Field</label>
@@ -113,7 +110,6 @@ that can be set.
 Here is an example of defining a select field:
 
 ```xml
-
 <field id="my_select_field" translate="label" type="select" sort_order="20" show_in_default="1" show_in_website="1"
        show_in_store="1">
     <label>My Select Field</label>
@@ -132,7 +128,6 @@ These rules are specified using the `<validate>` element within the `<field>` de
 Here is an example of defining validation rules for a text field:
 
 ```xml
-
 <field id="my_text_field" translate="label" type="text" sort_order="10" show_in_default="1" show_in_website="1"
        show_in_store="1">
     <label>My Text Field</label>

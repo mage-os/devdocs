@@ -225,7 +225,6 @@ In this example, `$block` refers to an instance of `CustomBlock`.
 4. Use your block and template in a layout XML file. Here's an example:
 
 ```xml
-
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>

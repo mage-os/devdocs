@@ -121,7 +121,6 @@ Magento 2 allows the creation of data fixtures to provide consistent test data f
 in XML files and can be used to set up test scenarios.
 
 ```xml
-
 <testData>
     <fixture>
         <name>my_module_data</name>

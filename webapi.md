@@ -27,7 +27,6 @@ element, you define different routes that correspond to different parts of your 
 Example:
 
 ```xml
-
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
     <!-- Route definitions go here -->
@@ -42,7 +41,6 @@ endpoint for accessing the web API. Within the `route` element, you define the s
 Example:
 
 ```xml
-
 <route url="/V1" method="GET">
     <!-- Service definitions go here -->
 </route>
@@ -59,7 +57,6 @@ accessing that service and also contains the methods associated with that servic
 Example:
 
 ```xml
-
 <service class="Magento\Catalog\Api\ProductRepositoryInterface" method="get">
     <!-- Method definitions go here -->
 </service>
@@ -78,7 +75,6 @@ further configure the behavior of the method.
 Example:
 
 ```xml
-
 <method name="get" entity_type="Magento\Catalog\Api\Data\ProductInterface">
     <!-- Method configuration goes here -->
 </method>

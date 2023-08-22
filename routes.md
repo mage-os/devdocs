@@ -16,7 +16,6 @@ and consists of multiple elements that define the routes and their associated co
 Here is an example of the basic structure of a `routes.xml` file:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="[ROUTER_ID]">
@@ -100,7 +99,6 @@ named `Acme_CustomModule` that needs to define a custom route for frontend pages
 Here is the `routes.xml` file for this module:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">

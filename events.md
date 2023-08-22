@@ -64,7 +64,6 @@ convenient way to define observers using XML configuration. Let's create an obse
 1. Create a new XML file `events.xml` in your module's `etc` directory:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="customer_register_success">
@@ -109,7 +108,6 @@ needs. To create a custom event, follow these steps:
 1. Create a new XML file `events.xml` in your module's `etc` directory:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="custom_event">

@@ -45,7 +45,6 @@ Defining an event in the `events.xml` file is as simple as adding an `event` tag
 an example:
 
 ```xml
-
 <event name="catalog_product_save_after">
     <observer name="catalog_product_save_after_observer" instance="Vendor\Module\Observer\ProductSaveAfter"
               method="execute"/>
@@ -60,7 +59,6 @@ Defining an observer for the event involves adding an `observer` tag inside the 
 specifies the class that will handle this event, while the `method` attribute defines the method that will be called.
 
 ```xml
-
 <observer name="catalog_product_save_after_observer" instance="Vendor\Module\Observer\ProductSaveAfter"
           method="execute"/>
 ```

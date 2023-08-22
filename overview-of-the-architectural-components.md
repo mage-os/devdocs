@@ -43,7 +43,6 @@ In Magento 2, Views are implemented using XML and PHTML templates.
 Example (XML layout file):
 
 ```xml
-
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
@@ -127,7 +126,6 @@ dependencies from a centralized container, reducing coupling and enabling module
 Example (DI configuration file):
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Vendor\Module\Api\ProductServiceInterface" type="Vendor\Module\Model\ProductService"/>

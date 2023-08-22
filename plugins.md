@@ -100,7 +100,6 @@ To use a plugin in Magento 2, you need to define its configuration in your modul
 how to configure a plugin for a class `TargetClass`:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="TargetClass">

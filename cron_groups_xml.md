@@ -22,7 +22,6 @@ The `cron_groups.xml` file follows a specific structure that consists of several
 example of the basic structure:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/cron_groups.xsd">
     <group id="default">
@@ -55,7 +54,6 @@ following attribute:
 Example:
 
 ```xml
-
 <group id="default">
     <!-- Group configurations -->
 </group>
@@ -69,7 +67,6 @@ minutes for generating the cron schedule.
 Example:
 
 ```xml
-
 <schedule_generate_every>1</schedule_generate_every>
 ```
 
@@ -81,7 +78,6 @@ is generated. It helps in ensuring that scheduled tasks are executed on time by 
 Example:
 
 ```xml
-
 <schedule_ahead_for>4</schedule_ahead_for>
 ```
 
@@ -93,7 +89,6 @@ this time, the schedule entry for the cron job will be removed from the schedule
 Example:
 
 ```xml
-
 <schedule_lifetime>2</schedule_lifetime>
 ```
 
@@ -105,7 +100,6 @@ minutes for cleaning up the history of executed cron jobs.
 Example:
 
 ```xml
-
 <history_cleanup_every>10</history_cleanup_every>
 ```
 
@@ -117,7 +111,6 @@ removed from the history tables.
 Example:
 
 ```xml
-
 <history_success_lifetime>60</history_success_lifetime>
 ```
 
@@ -129,7 +122,6 @@ from the history tables.
 Example:
 
 ```xml
-
 <history_failure_lifetime>600</history_failure_lifetime>
 ```
 
@@ -141,7 +133,6 @@ separate process. It accepts a boolean value: `0` for false and `1` for true.
 Example:
 
 ```xml
-
 <use_separate_process>0</use_separate_process>
 ```
 

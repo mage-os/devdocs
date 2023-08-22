@@ -43,7 +43,6 @@ To configure an indexer, you define it in the `indexer.xml` file with its associ
 an example of configuring a custom indexer:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
     <indexer id="custom_indexer" view_id="custom_indexer" class="[Vendor]\[Module]\Indexer\CustomIndexer">

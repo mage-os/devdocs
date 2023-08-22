@@ -18,7 +18,6 @@ The cache.xml file is located in the `app/etc/` directory of your Magento 2 inst
 structure with a root `<config>` element, which contains multiple `<type>` elements representing different cache types.
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
     <type name="cache_type1"/>
@@ -39,7 +38,6 @@ the corresponding `<type>` element. These child elements define various properti
 ### Example: Configuring the `config` Cache Type
 
 ```xml
-
 <type name="config">
     <backend_model>Magento\Framework\Cache\Backend\File</backend_model>
     <backend_model>Magento\Framework\App\Cache\StateInterface</backend_model>

@@ -23,7 +23,6 @@ The `<vars>` section allows you to define and override CSS variables. These vari
 to control various CSS properties. Here's an example of how to define a variable:
 
 ```xml
-
 <vars module="Magento_Theme">
     <var name="customVariable">red</var>
 </vars>
@@ -44,7 +43,6 @@ The `<colors>` section allows you to define and override color values used in yo
 various elements such as text, buttons, links, and more. Here's an example:
 
 ```xml
-
 <colors>
     <color name="text.base">black</color>
     <color name="button.primary">blue</color>
@@ -66,7 +64,6 @@ The `<images>` section is used to define image-related configuration. You can sp
 other properties. Here's an example:
 
 ```xml
-
 <images module="Magento_Theme">
     <image id="product_page_main_image" type="image">
         <width>1000</width>
@@ -84,7 +81,6 @@ The `<templates>` section allows you to define and override template files used 
 template files to use for different elements of the frontend. Here's an example:
 
 ```xml
-
 <templates>
     <template id="Magento_Catalog::product/list.phtml">
         <overwrite>true</overwrite>
@@ -102,7 +98,6 @@ The `<layout>` section defines the layout configuration for your theme. You can 
 different pages and blocks. Here's an example:
 
 ```xml
-
 <layout>
     <updates>
         <update id="my_custom_layout"/>
@@ -120,7 +115,6 @@ appearance of the product image on the product detail page. You can achieve this
 your `view.xml` file:
 
 ```xml
-
 <images module="Magento_Catalog">
     <image id="product_page_main_image" type="image">
         <width>800</width>

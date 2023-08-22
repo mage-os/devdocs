@@ -102,7 +102,6 @@ Here's an example of how to create a custom API endpoint for retrieving a list o
 2. Define a new route in `etc/webapi.xml`:
 
 ```xml
-
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
     <route url="/V1/custom-products" method="GET" identity="Vendor_CustomApi::customProducts"/>
@@ -211,7 +210,6 @@ class ProductRepository implements ProductRepositoryInterface
 4. Register your custom implementation in `di.xml`:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Vendor\CustomApi\Api\ProductRepositoryInterface" type="Vendor\CustomApi\Model\ProductRepository"/>
@@ -271,7 +269,6 @@ class ProductRepositoryPlugin
 3. Register your plugin in `di.xml`:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Catalog\Api\ProductRepositoryInterface">

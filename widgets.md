@@ -95,7 +95,6 @@ For example, to include a **Catalog Products List** widget in the homepage, add 
 theme's `cms_index_index.xml` layout file:
 
 ```xml
-
 <container name="content.top">
     <referenceContainer name="content">
         <container name="widget.container" htmlTag="div" htmlClass="widget-container">

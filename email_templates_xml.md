@@ -21,7 +21,6 @@ The `email_templates.xml` file follows a specific XML structure that defines the
 configurations. Here is a basic example of the structure:
 
 ```xml
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
     <template id="template_id" label="Template Label" file="file_name.html" type="html">
@@ -51,7 +50,6 @@ To create a new email template, you need to add a `<template>` element inside th
 the `email_templates.xml` file. Here's an example:
 
 ```xml
-
 <template id="custom_template" label="Custom Template" file="custom_template.html" type="html">
     <!-- Variable definitions and CSS styles go here -->
 </template>
@@ -69,7 +67,6 @@ To define variables for an email template, you need to add `<variable>` elements
 the `<template>` element. Here's an example:
 
 ```xml
-
 <template id="custom_template" label="Custom Template" file="custom_template.html" type="html">
     <variables>
         <variable name="customer_name" xsi:type="string">John Doe</variable>
@@ -97,7 +94,6 @@ attributes. These attributes allow you to specify the subject, sender, and other
 Here's an example of configuring an email template:
 
 ```xml
-
 <template id="custom_template" label="Custom Template" file="custom_template.html" type="html"
           subject="Custom Template Subject" sender_name="Store Name" sender_email="store@example.com">
     <!-- Variable definitions, CSS styles, and email content go here -->
@@ -118,7 +114,6 @@ You can add custom headers to the email template by using the `<headers>` elemen
 Here's an example:
 
 ```xml
-
 <template id="custom_template" label="Custom Template" file="custom_template.html" type="html" ...>
 <headers>
 <header name="X-Custom-Header">Custom Value</header>
@@ -136,7 +131,6 @@ To include attachments in the email template, you can use the `<attachments>` el
 Here's an example:
 
 ```xml
-
 <template id="custom_template" label="Custom Template" file="custom_template.html" type="html" ...>
 <attachments>
 <attachment type="mimetype" encoding="encoding_type">attachment_content</attachment>

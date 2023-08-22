@@ -51,7 +51,6 @@ view.
 Here is an example of a custom indexer definition:
 
 ```xml
-
 <indexer id="my_custom_indexer" view_id="my_custom_indexer">
     <!-- Indexer configuration goes here -->
 </indexer>
@@ -72,7 +71,6 @@ options include:
 Here is an example of a custom indexer configuration:
 
 ```xml
-
 <indexer id="my_custom_indexer" view_id="my_custom_indexer">
     <title>My Custom Indexer</title>
     <description>This indexer updates the custom data in the database.</description>
@@ -93,7 +91,6 @@ more `<data_source>` sections to specify the sources of data.
 Here is an example of a data source configuration:
 
 ```xml
-
 <data_source name="[Data_Source_Name]">
     <!-- Data source configuration goes here -->
 </data_source>

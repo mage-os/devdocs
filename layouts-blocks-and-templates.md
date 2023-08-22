@@ -97,7 +97,6 @@ class RecentProducts extends Template
 Now, in your layout file, you can add the `RecentProducts` block to the desired container.
 
 ```xml
-
 <block class="Vendor\Module\Block\RecentProducts" name="recent_products"
        template="Vendor_Module::recent_products.phtml"/>
 ```
