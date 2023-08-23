@@ -134,6 +134,7 @@ write the necessary HTML and PHP code to render the list.
 /** @var \Vendor\Module\Block\RecentProducts $block */
 $recentProducts = $block->getRecentProducts();
 ?>
+
 <div class="recent-products">
     <h2>Recently Added Products</h2>
     <ul>
