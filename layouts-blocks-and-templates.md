@@ -106,6 +106,7 @@ method using the `$block` object.
 
 ```php
 <?php
+/** @var \Vendor\Module\Block\RecentProducts $block */
 
 $recentProducts = $block->getRecentProducts();
 
@@ -129,6 +130,11 @@ create a template file named `recent_products.phtml` within your theme's templat
 write the necessary HTML and PHP code to render the list.
 
 ```html+php
+<?php
+/** @var \Vendor\Module\Block\RecentProducts $block */
+$recentProducts = $block->getRecentProducts();
+?>
+
 <div class="recent-products">
     <h2>Recently Added Products</h2>
     <ul>
