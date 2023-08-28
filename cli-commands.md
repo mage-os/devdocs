@@ -98,6 +98,75 @@ Example usage:
 php bin/magento cache:clean
 ```
 
+### `deploy:mode:set`
+
+The `deploy:mode:set` command in Magento 2 is a command-line tool used to set or change the operational mode of a Magento store. Operational modes determine how the store manages various aspects such as caching, error reporting, and other critical settings. This command allows developers and administrators to switch between different modes to optimize the store's behavior for various stages of development and deployment.
+
+Example usage:
+
+```bash
+php bin/magento deploy:mode:set
+```
+
+### `deploy:mode:show`
+
+The `deploy:mode:show` command is a CLI tool that swiftly reveals the operational mode (default, developer, or production) your store is currently operating in. It aids in ensuring the correct mode is active for optimal caching, error reporting, and settings alignment during development and production phases.
+
+Example usage:
+
+```bash
+php bin/magento deploy:mode:show
+```
+
+### `store:list`
+
+The `store:list` command in Magento 2's CLI interface provides a comprehensive list of all the stores within your Magento installation. This includes information about each store's code, website, group, and root category, offering a quick overview of your store hierarchy for efficient management and reference.
+
+Example usage:
+
+```bash
+php bin/magento store:list
+```
+
+### `store:website:list`
+
+The `store:website:list` command within Magento 2's CLI interface offers a convenient way to display a list of all websites present in your Magento installation. This command provides essential information about each website, including its code, name, and base URL, facilitating a clear and concise overview of your website hierarchy for effective management and reference.
+
+Example usage:
+
+```bash
+php bin/magento store:website:list
+```
+
+### `maintenance:disable`
+
+The `maintenance:disable` command in Magento 2 is used to disable maintenance mode for your Magento store. When you execute this command, it turns off the maintenance page that informs visitors about the temporary unavailability of the store due to maintenance activities. This action allows your store to resume normal operations and be accessible to customers once again.
+
+Example usage:
+
+```bash
+php bin/magento maintenance:disable
+```
+
+### `maintenance:enable`
+
+The `maintenance:enable` command in Magento 2 is designed to activate maintenance mode for your Magento store. When you run this command, it triggers the display of a maintenance page to visitors, informing them that the store is temporarily unavailable due to maintenance activities.
+
+Example usage:
+
+```bash
+php bin/magento maintenance:enable
+```
+### `maintenance:status`
+
+The `maintenance:status` command in Magento 2 serves the purpose of checking and displaying the current status of maintenance mode for your Magento store. When you execute this command, Magento 2 provides information indicating whether the store is currently in maintenance mode or not.
+
+Example usage:
+
+```bash
+php bin/magento maintenance:status
+```
+
 ## Conclusion
 
 CLI commands in Magento 2 provide a powerful way to interact with the system from the command line. This documentation
