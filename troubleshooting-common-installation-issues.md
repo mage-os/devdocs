@@ -6,13 +6,13 @@ This documentation aims to provide solutions to common installation issues encou
 e-commerce platform, specifically Magento 2. The instructions assume that you have a basic understanding of programming
 concepts and the Magento 2 framework.
 
-## 1. Server Requirements
+## Server Requirements
 
 Before troubleshooting any installation issues, make sure your server meets the minimum requirements for running Magento
 2. These requirements include PHP version, extensions, and server configurations. Consult the official Magento 2
 documentation or the system requirements provided by your hosting provider for the exact specifications.
 
-## 2. Invalid Credentials for Database Connection
+## Invalid Credentials for Database Connection
 
 One common installation issue occurs when Magento 2 fails to connect to the database due to incorrect credentials. To
 resolve this, verify that the database credentials specified in the `app/etc/env.php` file are correct. For example:
@@ -34,7 +34,7 @@ resolve this, verify that the database credentials specified in the `app/etc/env
 Ensure the host, dbname, username, and password values match those provided by your database administrator or hosting
 provider.
 
-## 3. File and Directory Permissions
+## File and Directory Permissions
 
 Magento 2 requires specific file and directory permissions to function properly. Incorrect permissions can result in
 installation issues, such as blank pages or access denied errors. Here are some general guidelines:
@@ -53,7 +53,7 @@ chmod 660 app/etc/env.php
 
 This ensures the necessary read, write, and execute permissions are set correctly.
 
-## 4. Missing Required PHP Extensions
+## Missing Required PHP Extensions
 
 Magento 2 relies on various PHP extensions to function properly. If you encounter an error indicating a missing
 extension, you need to install it. Here's an example:
@@ -71,7 +71,7 @@ sudo apt-get install php-xsl
 
 Refer to your operating system's documentation or consult with your hosting provider to install the required extensions.
 
-## 5. Memory Limit Exceeded
+## Memory Limit Exceeded
 
 During installation or operation, Magento 2 may encounter memory limit errors. This typically occurs due to insufficient
 memory allocated to PHP. To resolve this, you can increase the memory limit by editing the PHP configuration
@@ -85,7 +85,7 @@ memory_limit = 512M
 
 Save the file and restart your web server to apply the changes.
 
-## 6. Clearing Cache and Generated Files
+## Clearing Cache and Generated Files
 
 If you encounter unexpected issues during installation or after making changes to your Magento 2 installation, it's
 often helpful to clear the cache and generated files. Magento 2 provides command-line tools for this purpose.
@@ -103,6 +103,21 @@ bin/magento setup:static-content:deploy
 ```
 
 These commands ensure that any cached data or outdated generated files are removed and regenerated.
+
+## Unexpected Issues with Custom CLI Commands
+
+Magento 2 users may encounter unexpected issues with custom CLI commands from third parties during project setups, test executions, or deployments. A common error arises during the magento setup command, indicating the `magento.flag` does not exist. This error often occurs due to premature database calls, causing a stalled system installation.
+
+**Preventive Strategies**
+
+- Avoid resource-consuming operations: Do not make DB/API calls in the `__construct` methods of CLI command classes.
+- Avoid unavailable resources: Do not use resources in `__construct` that might not be available during runtime.
+- Use Proxies: If you cannot control the code, inject a Proxy using di configs.
+
+**Automated Proxy Injection**
+
+For extensive projects, identifying problematic CLI commands can be challenging. The [run-as-root/magento-cli-auto-proxy](https://github.com/run-as-root/magento-cli-auto-proxy) package automates the proxy injection process, eliminating early resource access errors and speeding up `php bin/magento` and `php bin/magento setup:install` executions.
+
 
 ## Conclusion
 
