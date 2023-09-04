@@ -53,6 +53,26 @@ Example usage:
 php bin/magento setup:upgrade
 ```
 
+### `cache:disable`
+
+The `cache:disable` command is used to disable specific cache types within your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento cache:disable full_page
+```
+
+### `cache:enable`
+
+The `cache:enable` command in Magento 2 allows you to activate specific cache types to enhance your store's performance by reducing data retrieval times and optimizing resource usage.
+
+Example usage:
+
+```bash
+php bin/magento cache:enable full_page
+```
+
 ### `cache:flush`
 
 The `cache:flush` command flushes all caches in the Magento 2 system. This is useful after making changes that need to
@@ -62,6 +82,16 @@ Example usage:
 
 ```bash
 php bin/magento cache:flush
+```
+
+### `cache:status`
+
+The `cache:status` is used to check the current status of cache types in your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento cache:status
 ```
 
 ### `module:enable` and `module:disable`
@@ -157,6 +187,7 @@ Example usage:
 ```bash
 php bin/magento maintenance:enable
 ```
+
 ### `maintenance:status`
 
 The `maintenance:status` command in Magento 2 is used to display the current status of maintenance mode for your Magento store.
@@ -165,6 +196,56 @@ Example usage:
 
 ```bash
 php bin/magento maintenance:status
+```
+
+### `queue:consumers:list`
+
+The `queue:consumers:list` is used to display a list of all message queue consumers in your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento queue:consumers:list
+```
+
+### `queue:consumers:restart`
+
+The `queue:consumers:restart` is used to initiate the restart of all message queue consumers. Magento will stop all currently running message queue consumers and then restart them. 
+
+Example usage:
+
+```bash
+php bin/magento queue:consumers:restart
+```
+
+### `queue:consumers:start`
+
+The `queue:consumers:start` is used to manually start the processing of messages by message queue consumers.
+
+Example usage:
+
+```bash
+php bin/magento queue:consumers:start
+```
+
+### `indexer:info`
+
+The `indexer:info` is a command that provides information about the indexers in your Magento 2 installation.
+
+Example usage:
+
+```bash
+php indexer:info
+```
+
+### `indexer:status`
+
+The `indexer:status` show the status of all indexers in Magento 2.
+
+Example usage:
+
+```bash
+php indexer:status
 ```
 
 ## Conclusion
