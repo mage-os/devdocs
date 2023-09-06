@@ -235,7 +235,7 @@ The `indexer:info` is a command that provides information about the indexers in 
 Example usage:
 
 ```bash
-php indexer:info
+php bin/magento indexer:info
 ```
 
 ### `indexer:reindex`
@@ -245,7 +245,7 @@ The `indexer:reindex` command is used to manually trigger the reindexing process
 Example usage:
 
 ```bash
-php indexer:reindex
+php bin/magento indexer:reindex
 ```
 
 ### `indexer:reset`
@@ -255,7 +255,7 @@ The `indexer:reset` is used to reset (invalidate) one or more specific indexers 
 Example usage to reset specific index:
 
 ```bash
-php indexer:reset <indexer_code>
+php bin/magento indexer:reset <indexer_code>
 ```
 And to reset all indexers:
 ```bash
@@ -269,7 +269,7 @@ The `indexer:status` show the status of all indexers in Magento 2.
 Example usage:
 
 ```bash
-php indexer:status
+php bin/magento indexer:status
 ```
 
 ### `info:adminuri`
@@ -279,7 +279,7 @@ The `info:adminuri` is used to display the URL for accessing the Magento Admin P
 Example usage:
 
 ```bash
-php info:adminuri
+php bin/magento info:adminuri
 ```
 
 ### `info:backups:list`
@@ -289,7 +289,17 @@ The `info:backups:list` command is used to display a list of available backups f
 Example usage:
 
 ```bash
-php info:backups:list
+php bin/magento info:backups:list
+```
+
+### `info:currency:list`
+
+The `info:currency:list` command is used to display a list of available currencies in your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento info:currency:list
 ```
 
 ### `varnish:vcl:generate`
@@ -299,9 +309,42 @@ The `varnish:vcl:generate` is used to generate a Varnish Configuration Language 
 Example usage:
 
 ```bash
-php varnish:vcl:generate
+php bin/magento varnish:vcl:generate
 ```
 
+### `cron:run`
+
+The `cron:run` is used to manually trigger the execution of scheduled cron jobs in your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento cron:run
+```
+
+### `config:set`
+
+The `config:set` is used to set or update configuration settings in your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento config:set <path> <value> [--scope="store|website"]
+```
+
+In this command:
+
+`<path>` represents the unique identifier or path of the configuration setting you want to modify.
+
+`<value>` is the new value you want to set for the configuration setting.
+
+`--scope` is an optional parameter that allows you to specify whether the configuration change should apply at the store or website level. You can choose "store" or "website."
+
+For example, to set a new value for a specific configuration setting, you would use a command like this:
+
+```bash
+php bin/magento config:set mymodule/general/enable_feature 1 --scope="store"
+```
 
 ## Conclusion
 
