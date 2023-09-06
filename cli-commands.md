@@ -238,6 +238,30 @@ Example usage:
 php indexer:info
 ```
 
+### `indexer:reindex`
+
+The `indexer:reindex` command is used to manually trigger the reindexing process for all indexers in your Magento 2 installation. 
+
+Example usage:
+
+```bash
+php indexer:reindex
+```
+
+### `indexer:reset`
+
+The `indexer:reset` is used to reset (invalidate) one or more specific indexers or all indexers. 
+
+Example usage to reset specific index:
+
+```bash
+php indexer:reset <indexer_code>
+```
+And to reset all indexers:
+```bash
+php indexer:reset
+```
+
 ### `indexer:status`
 
 The `indexer:status` show the status of all indexers in Magento 2.
@@ -247,6 +271,37 @@ Example usage:
 ```bash
 php indexer:status
 ```
+
+### `info:adminuri`
+
+The `info:adminuri` is used to display the URL for accessing the Magento Admin Panel
+
+Example usage:
+
+```bash
+php info:adminuri
+```
+
+### `info:backups:list`
+
+The `info:backups:list` command is used to display a list of available backups for your Magento installation.
+
+Example usage:
+
+```bash
+php info:backups:list
+```
+
+### `varnish:vcl:generate`
+
+The `varnish:vcl:generate` is used to generate a Varnish Configuration Language (VCL) file and echos it to the console.
+
+Example usage:
+
+```bash
+php varnish:vcl:generate
+```
+
 
 ## Conclusion
 
