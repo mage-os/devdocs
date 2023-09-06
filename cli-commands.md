@@ -53,6 +53,26 @@ Example usage:
 php bin/magento setup:upgrade
 ```
 
+### `cache:disable`
+
+The `cache:disable` command is used to disable specific cache types within your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento cache:disable full_page
+```
+
+### `cache:enable`
+
+The `cache:enable` command in Magento 2 allows you to activate specific cache types to enhance your store's performance by reducing data retrieval times and optimizing resource usage.
+
+Example usage:
+
+```bash
+php bin/magento cache:enable full_page
+```
+
 ### `cache:flush`
 
 The `cache:flush` command flushes all caches in the Magento 2 system. This is useful after making changes that need to
@@ -62,6 +82,16 @@ Example usage:
 
 ```bash
 php bin/magento cache:flush
+```
+
+### `cache:status`
+
+The `cache:status` is used to check the current status of cache types in your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento cache:status
 ```
 
 ### `module:enable` and `module:disable`
@@ -97,6 +127,181 @@ Example usage:
 ```bash
 php bin/magento cache:clean
 ```
+
+### `deploy:mode:set`
+
+The `deploy:mode:set` command is used to set the operational mode of a Magento store. 
+
+Example usage:
+
+```bash
+php bin/magento deploy:mode:set
+```
+
+### `deploy:mode:show`
+
+The `deploy:mode:show` quickly displays the current operational mode (default, developer, or production) of your store, assisting in ensuring the optimal mode is active during development and production.
+
+Example usage:
+
+```bash
+php bin/magento deploy:mode:show
+```
+
+### `store:list`
+
+The `store:list` command provides a list of all the stores within your Magento installation. This includes information about each store's code, website, group, and root category.
+
+Example usage:
+
+```bash
+php bin/magento store:list
+```
+
+### `store:website:list`
+
+The `store:website:list` command display a list of all websites present in your Magento installation. This command provides essential information about each website, including its code, name, and base URL.
+
+Example usage:
+
+```bash
+php bin/magento store:website:list
+```
+
+### `maintenance:disable`
+
+The `maintenance:disable` command in Magento 2 is used to disable maintenance mode for your Magento store.
+
+Example usage:
+
+```bash
+php bin/magento maintenance:disable
+```
+
+### `maintenance:enable`
+
+The `maintenance:enable` command iis designed to activate maintenance mode for your Magento store.
+
+Example usage:
+
+```bash
+php bin/magento maintenance:enable
+```
+
+### `maintenance:status`
+
+The `maintenance:status` command in Magento 2 is used to display the current status of maintenance mode for your Magento store.
+
+Example usage:
+
+```bash
+php bin/magento maintenance:status
+```
+
+### `queue:consumers:list`
+
+The `queue:consumers:list` is used to display a list of all message queue consumers in your Magento installation.
+
+Example usage:
+
+```bash
+php bin/magento queue:consumers:list
+```
+
+### `queue:consumers:restart`
+
+The `queue:consumers:restart` is used to initiate the restart of all message queue consumers. Magento will stop all currently running message queue consumers and then restart them. 
+
+Example usage:
+
+```bash
+php bin/magento queue:consumers:restart
+```
+
+### `queue:consumers:start`
+
+The `queue:consumers:start` is used to manually start the processing of messages by message queue consumers.
+
+Example usage:
+
+```bash
+php bin/magento queue:consumers:start
+```
+
+### `indexer:info`
+
+The `indexer:info` is a command that provides information about the indexers in your Magento 2 installation.
+
+Example usage:
+
+```bash
+php indexer:info
+```
+
+### `indexer:reindex`
+
+The `indexer:reindex` command is used to manually trigger the reindexing process for all indexers in your Magento 2 installation. 
+
+Example usage:
+
+```bash
+php indexer:reindex
+```
+
+### `indexer:reset`
+
+The `indexer:reset` is used to reset (invalidate) one or more specific indexers or all indexers. 
+
+Example usage to reset specific index:
+
+```bash
+php indexer:reset <indexer_code>
+```
+And to reset all indexers:
+```bash
+php indexer:reset
+```
+
+### `indexer:status`
+
+The `indexer:status` show the status of all indexers in Magento 2.
+
+Example usage:
+
+```bash
+php indexer:status
+```
+
+### `info:adminuri`
+
+The `info:adminuri` is used to display the URL for accessing the Magento Admin Panel
+
+Example usage:
+
+```bash
+php info:adminuri
+```
+
+### `info:backups:list`
+
+The `info:backups:list` command is used to display a list of available backups for your Magento installation.
+
+Example usage:
+
+```bash
+php info:backups:list
+```
+
+### `varnish:vcl:generate`
+
+The `varnish:vcl:generate` is used to generate a Varnish Configuration Language (VCL) file and echos it to the console.
+
+Example usage:
+
+```bash
+php varnish:vcl:generate
+```
+
 
 ## Conclusion
 
