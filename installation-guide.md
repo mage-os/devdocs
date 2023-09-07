@@ -31,6 +31,41 @@ composer create-project --repository-url=... .
 
 This command will download the latest version of Magento 2 and all its dependencies.
 
+### Using Mage-OS Mirrors
+When opting to install Magento 2 using one of the
+[Mage-OS mirror repositories](https://mage-os.org/distribution/#magento-mirrors), you will still need to configure
+`repo.magento.com` as one of your Composer repositories in order to download and install any of the modules you may have
+purchased from the Magento marketplace.
+
+It is also recommended that you either make use of Composer's
+[repository prioritisation](https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories) or
+[repository filtering](https://getcomposer.org/doc/articles/repository-priorities.md#filtering-packages) features
+(or both) to allow both the Mage-OS mirror and Magento repositories to coexist in your project.
+
+An example Composer repository configuration is given below:
+```json
+"repositories": {
+    "mage-os-mirror": {
+        "type": "composer",
+        "url": "https://mirror.mage-os.org/",
+        "only": [
+            "magento/*",
+            "paypal/*",
+            "vendorA/*",
+            "vendorB/module-b"
+        ]
+    },
+    "magento-marketplace": {
+        "type": "composer",
+        "url": "https://repo.magento.com",
+        "only": [
+            "vendorC/module-d",
+            "vendorE/*"
+        ]
+    },
+},
+```
+
 ## Step 2: Configure the Database
 
 Magento 2 requires a database to store its data. Before proceeding with the installation, you need to configure the
