@@ -26,7 +26,7 @@ To download Magento 2 using Composer, open your command line interface and navig
 the following command:
 
 ```bash
-composer create-project --repository-url=... .
+composer create-project --repository-url=https://mirror.mage-os.org/ magento/project-community-edition:2.4.6 .
 ```
 
 This command will download the latest version of Magento 2 and all its dependencies.
