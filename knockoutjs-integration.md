@@ -19,13 +19,7 @@ beneficial as well.
 
 To integrate KnockoutJS into your Magento 2 project, follow these steps:
 
-1. Include KnockoutJS library: Add the KnockoutJS library to your project by including the following line in your
-   template file or layout XML:
-   ```html
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-   ```
-
-2. Create a View Model: A view model is a JavaScript object that represents the data and behavior of your UI components.
+1. Create a View Model: A view model is a JavaScript object that represents the data and behavior of your UI components.
    In Magento 2, you can define a view model in a separate JS file or inline within a script tag. Here's an example of
    defining a view model inline:
    ```html
@@ -39,13 +33,13 @@ To integrate KnockoutJS into your Magento 2 project, follow these steps:
    </script>
    ```
 
-3. Bind Data to the UI: To bind data from the view model to the UI, use KnockoutJS data binding syntax. You can use
+2. Bind Data to the UI: To bind data from the view model to the UI, use KnockoutJS data binding syntax. You can use
    the `data-bind` attribute on HTML elements to specify the binding. For example:
    ```html
    <div data-bind="text: message"></div>
    ```
 
-4. Handle User Interactions: KnockoutJS provides a set of event bindings to handle user interactions. You can use
+3. Handle User Interactions: KnockoutJS provides a set of event bindings to handle user interactions. You can use
    the `click`, `submit`, `event`, and other bindings to attach event handlers to HTML elements. Here's an example of
    handling a click event:
    ```html
