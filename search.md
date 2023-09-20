@@ -83,7 +83,7 @@ file specifies the attributes to be included in the search index. Here's an exam
 
 After creating the `search_request.xml` file, you need to run the following command to apply the changes:
 
-```
+```bash
 php bin/magento indexer:reindex catalogsearch_fulltext
 ```
 

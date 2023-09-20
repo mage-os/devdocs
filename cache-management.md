@@ -41,20 +41,20 @@ efficient cache management. The main cache types in Magento 2 are:
 Magento 2 provides a command-line tool, `bin/magento`, to enable or disable different cache types. To enable all cache
 types, use the following command:
 
-```
+```bash
 bin/magento cache:enable
 ```
 
 To enable specific cache types, use the `--type` option followed by the cache type code. For example, to enable only the
 page cache and block HTML output cache, use:
 
-```
+```bash
 bin/magento cache:enable page_cache block_html
 ```
 
 Similarly, to disable all cache types, use the following command:
 
-```
+```bash
 bin/magento cache:disable
 ```
 
@@ -63,14 +63,14 @@ bin/magento cache:disable
 Flushing the cache clears all stored cache data, forcing Magento to recompute and regenerate the cache on the next
 request. To flush all cache types, run the following command:
 
-```
+```bash
 bin/magento cache:flush
 ```
 
 To flush specific cache types, use the `--type` option followed by the cache type code. For example, to flush only the
 page cache and block HTML output cache, use:
 
-```
+```bash
 bin/magento cache:flush page_cache block_html
 ```
 
@@ -163,7 +163,7 @@ merging XML files on each request.
 
 Example: To enable Configuration Cache in Magento 2 via the command line, use the following command:
 
-```
+```bash
 php bin/magento cache:enable config
 ```
 
@@ -174,7 +174,7 @@ merging XML files on each request, leading to improved performance.
 
 Example: To enable Layout Cache in Magento 2 via the command line, use the following command:
 
-```
+```bash
 php bin/magento cache:enable layout
 ```
 
@@ -225,7 +225,7 @@ metadata, Magento avoids querying the database for metadata information repeated
 
 Example: To enable Metadata Cache in Magento 2 via the command line, use the following command:
 
-```
+```bash
 php bin/magento cache:enable metadata
 ```
 
@@ -245,7 +245,7 @@ is useful, especially when automating deployment processes or managing multiple 
 
 Example: To enable the Full Page Cache via the command line, use the following command:
 
-```
+```bash
 php bin/magento cache:enable full_page
 ```
 
@@ -267,7 +267,7 @@ Magento 2 provides cache management commands that allow you to flush specific ca
 
 Example: To flush the Object Cache via the command line, use the following command:
 
-```
+```bash
 php bin/magento cache:flush customer
 ```
 

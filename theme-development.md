@@ -180,7 +180,7 @@ Magento 2 provides a set of commands to deploy themes and other assets.
 
 To deploy your theme, run the following command from your Magento 2 root directory:
 
-```
+```bash
 bin/magento setup:static-content:deploy
 ```
 
