@@ -71,6 +71,28 @@ include:
 - Gatling
 - Locust
 
+## Performance Fixtures
+
+Performance fixtures in Magento 2 are essential for generating a large set of data for performance testing. These fixtures allow you to simulate various scenarios that your Magento store might encounter in a real-world environment. This documentation aims to provide an in-depth guide on how to configure and use performance fixtures in Magento 2.
+
+### Understanding Performance Fixtures
+
+Performance fixtures are XML configurations that define the type and amount of data to be generated. They are located in the `<magento_root>/setup/performance-toolkit/profiles/` directory. You can choose between different profiles like **small**, **medium**, **medium_msite**,  **large** and **extra-large** based on your testing needs.
+
+### Running the Data Generator
+
+Before running the data generator, make sure to disable all cron jobs to avoid conflicts. Use the following command to generate data:
+
+```bash
+bin/magento setup:perf:generate-fixtures <path-to-profile>
+```
+
+Here's a sample command to generate data using the small profile:
+
+```bash
+bin/magento setup:perf:generate-fixtures setup/performance-toolkit/profiles/ce/small.xml
+```
+
 ## Best Practices for Performance Testing in PHP and Magento 2
 
 To ensure effective performance testing, follow these best practices:
