@@ -209,10 +209,53 @@ of your extension.
 Magento 2 allows you to create custom CLI commands that can be executed from the command line. To create a CLI command,
 follow these steps:
 
-1. Create a PHP class that extends the `Command` class from the `Symfony\Component\Console` namespace.
-2. Implement the necessary methods, including `configure` and `execute`, which define the command's configuration and
-   behavior.
-3. Register your command in the `di.xml` file of your extension.
+### 1. Create a PHP class 
+
+The PHP class extends the `Command` class from the `Symfony\Component\Console` namespace.
+
+Implement the necessary methods, including `configure` and `execute`, which define the command's configuration and
+behavior.
+
+Example:
+
+```php
+<?php
+namespace MyVendor\MyExtension\Console\Command;
+
+use Symfony\Component\Console\Command\Command;
+
+class MyCommand extends Command
+{
+    protected function configure()
+    {
+        $this->setName('myextension:mycommand')
+            ->setDescription('My custom CLI command');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        // Custom command logic goes here
+    }
+}
+```
+
+### 2. Register your command in the `di.xml` file of your extension.
+
+Regular commands are registered in the `Magento\Framework\Console\CommandListInterface` class.
+
+Example:
+
+```xml
+<!-- file: di.xml -->
+<type name="Magento\Framework\Console\CommandListInterface">
+    <arguments>
+        <argument name="commands" xsi:type="array">
+            <item name="myextension_mycommand" xsi:type="object">MyVendor\MyExtension\Console\Command\MyCommand</item>
+        </argument>
+    </arguments>
+</type>
+```
+
 
 ## 8. Packaging and Installing Extensions <a name="packaging-and-installing-extensions"></a>
 
