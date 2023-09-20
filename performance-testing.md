@@ -84,7 +84,7 @@ Performance fixtures are XML configurations that define the type and amount of d
 Before running the data generator, make sure to disable all cron jobs to avoid conflicts. Use the following command to generate data:
 
 ```bash
-bin/magento setup:perf:generate-fixtures <path-to-profile>
+bin/magento setup:performance:generate-fixtures <path-to-profile>
 ```
 
 Here's a sample command to generate data using the small profile:
