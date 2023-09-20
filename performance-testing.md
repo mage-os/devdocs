@@ -90,7 +90,7 @@ bin/magento setup:perf:generate-fixtures <path-to-profile>
 Here's a sample command to generate data using the small profile:
 
 ```bash
-bin/magento setup:perf:generate-fixtures setup/performance-toolkit/profiles/ce/small.xml
+bin/magento setup:performance:generate-fixtures setup/performance-toolkit/profiles/ce/small.xml
 ```
 
 ## Best Practices for Performance Testing in PHP and Magento 2
