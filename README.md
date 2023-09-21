@@ -53,4 +53,4 @@ For more details, see the [GitHub Flavored Markdown documentation](https://help.
 
 If you are submitting documentation for the **current stable release**, submit it to the corresponding branch. For
 example, documentation for Mage-OS 2.5.6 would be submitted to the `2.5.6` branch. Documentation intended for the next
-release of Mage-OS should be submitted to the `master` branch.
+release of Mage-OS should be submitted to the `main` branch.
