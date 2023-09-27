@@ -79,5 +79,50 @@ return => [
 > without invalidating existing encrypted data. For more information,
 > see [Encryption key management](https://devdocs.mage-os.org/docs/main/best-practices-for-secure-development).
 
+### Directories
 
+The `directories` section in `app/etc/env.php` only has one child element, `document_root_is_pub`. It is used by Magento
+to determine whether the document root is the `pub` directory. The following snippet shows the default value:
 
+```php
+// app/etc/env.php
+return [
+    // ...
+    'directories' => [
+        'document_root_is_pub' => true
+    ],
+    // ...
+];
+```
+
+### Downloadable Domains
+
+The `downloadable_domains` section in `app/etc/env.php` serves as a whitelist of domains from where users can download
+downloadable products after they purchese them. The following snippet shows the default value:
+
+```php
+// app/etc/env.php
+return [
+    // ...
+    'downloadable_domains' => [
+        'localhost'
+    ],
+    // ...
+];
+```
+
+### Install Date
+
+The `install` section in `app/etc/env.php` contains the installation date. It is used by Magento to determine the
+installation date. The following snippet shows the default value:
+
+```php
+// app/etc/env.php
+return [
+    // ...
+    'install' => [
+        'date' => 'Thu, 01 Jan 1970 00:00:00 +0000'
+    ],
+    // ...
+];
+```
