@@ -59,9 +59,30 @@ ComponentRegistrar::register(
 );
 ```
 
-4. To load the new theme, run the command `php bin/magento setup:upgrade`.
+4. To load the new theme, run the command `bin/magento setup:upgrade`.
 
 Your custom theme is now ready to be customized and extended as per your requirements.
+
+## Define a Preview Image (Optional)
+
+You can specify a preview image for your theme using the following XML configuration in your `theme.xml`:
+
+```xml
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
+    <title>MyTheme</title>
+    <parent>Magento/blank</parent>
+    <media>
+        <preview_image>media/preview.jpg</preview_image>
+    </media>
+</theme>
+```
+
+Ensure that the specified image file exists in your theme directory. If it doesn't, running `bin/magento setup:upgrade` will produce an error:
+
+```
+File "app/design/frontend/Acme/MyTheme/media/preview.jpg" does not exist.
+```
 
 ## Theme Inheritance
 
