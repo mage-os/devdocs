@@ -41,9 +41,6 @@ To create a custom theme in Magento 2, follow these steps:
        xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
     <title>MyTheme</title>
     <parent>Magento/blank</parent>
-    <media>
-        <preview_image>media/preview.jpg</preview_image>
-    </media>
 </theme>
 ```
 
@@ -62,7 +59,7 @@ ComponentRegistrar::register(
 );
 ```
 
-4. Flush the Magento cache to load the new theme. You can do this by running the command `bin/magento cache:flush`.
+4. To load the new theme, run the command `php bin/magento setup:upgrade`.
 
 Your custom theme is now ready to be customized and extended as per your requirements.
 
