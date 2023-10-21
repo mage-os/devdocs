@@ -1,6 +1,26 @@
 on: [push, pull_request]
 
 jobs:
+  alex:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - uses: tj-actions/changed-files@v39
+      id: changed-files
+      with:
+        files: '**/*.md'
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+    - name: Install alex
+      run: npm install -g alex
+    - name: Run alex on changed files
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: alex ${{ steps.changed-files.outputs.all_changed_files }}
+
   lint:
     runs-on: ubuntu-latest
     steps:
