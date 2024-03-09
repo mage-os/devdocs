@@ -241,61 +241,32 @@ template.
 
 ## Database Setup
 
-Magento 2 uses database setup scripts to create and modify database tables and perform other setup tasks. To create a
-database setup script, follow these steps:
+Magento 2 uses Declarative schema setup to create and modify database tables and perform other setup tasks. To create a
+declarative schema script, follow these steps:
 
-1. Create a file named `InstallSchema.php` inside your module's `Setup` directory.
-2. Implement the necessary logic inside the class. Here's an example:
+1. Create a file named `db_schema.xml` inside your module's `etc` directory.
+2. Implement the necessary logic inside the file. Here's an example:
 
-```php
-<?php
-namespace Vendor\Module\Setup;
-
-use Magento\Framework\Setup\InstallSchemaInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
-use Magento\Framework\Setup\SchemaSetupInterface;
-
-class InstallSchema implements InstallSchemaInterface
-{
-    public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
-    {
-        $setup->startSetup();
-
-        $table = $setup->getConnection()
-            ->newTable($setup->getTable('custom_table'))
-            ->addColumn(
-                'entity_id',
-                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-                null,
-                ['identity' => true, 'nullable' => false, 'primary' => true],
-                'Entity ID'
-            )
-            ->addColumn(
-                'name',
-                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                255,
-                ['nullable' => false],
-                'Name'
-            )
-            ->addColumn(
-                'created_at',
-                \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
-                null,
-                ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT],
-                'Created At'
-            )
-            ->setComment('Custom Table');
-
-        $setup->getConnection()->createTable($table);
-
-        $setup->endSetup();
-    }
-}
+```xml
+<table name="custom_table" resource="default" engine="innodb"
+           comment="Custom Table">
+    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+    <column xsi:type="varchar" name="name" nullable="false" length="255" default="" comment="name"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+        <column name="entity_id"/>
+    </constraint>
+</table>
 ```
 
 In this example, we're creating a table named `custom_table` with three columns: `entity_id`, `name`, and `created_at`.
 
-3. Run the setup upgrade command to apply your schema changes:
+3. Run the whitelist generation command:
+
+```
+bin/magento setup:db-declaration:generate-whitelist --module-name=Vendor_Module
+```
+4. Run the setup upgrade command to apply your schema changes:
 
 ```shell
 bin/magento setup:upgrade
