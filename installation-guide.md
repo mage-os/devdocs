@@ -1,12 +1,12 @@
-# Installation Guide for Magento 2
+# Installation Guide for Mage-OS
 
 [TOC]
 
 ## Introduction
 
-This installation guide provides step-by-step instructions for installing Magento 2 on your server. The guide assumes
+This installation guide provides step-by-step instructions for installing Mage-OS on your server. The guide assumes
 you have a basic understanding of programming concepts, specifically PHP and Magento 2. By following these instructions,
-you will be able to successfully install Magento 2 and start building your online store.
+you will be able to successfully install Mage-OS and start building your online store.
 
 ## Prerequisites
 
@@ -17,19 +17,18 @@ Before proceeding with the installation, please ensure that your server meets th
 - Apache or Nginx web server
 - Composer 2
 
-## Step 1: Download Magento 2
+## Step 1: Download Mage-OS
 
-The first step in the installation process is to download the Magento 2 package. You can download the package from the
-official Magento website or use Composer to install it.
+The first step in the installation process is to download the Mage-OS package. You can use Composer to install it.
 
-To download Magento 2 using Composer, open your command line interface and navigate to your project directory. Then, run
+To download Mage-OS using Composer, open your command line interface and navigate to your project directory. Then, run
 the following command:
 
 ```bash
-composer create-project --repository-url=https://mirror.mage-os.org/ magento/project-community-edition:2.4.6 .
+composer create-project --repository-url=https://repo.mage-os.org/ mage-os/project-community-edition .
 ```
 
-This command will download the latest version of Magento 2 and all its dependencies.
+This command will download the latest version of Mage-OS and all its dependencies.
 
 ### Using Mage-OS Mirrors
 When opting to install Magento 2 using one of the
@@ -66,51 +65,40 @@ An example Composer repository configuration is given below:
 },
 ```
 
-## Step 2: Configure the Database
+## Step 2: Run install from command line
 
-Magento 2 requires a database to store its data. Before proceeding with the installation, you need to configure the
-database settings.
+The bin/magento setup:install command is a vital part of the Mage-OS installation process. It automates the setup of a new Mage-OS instance by configuring necessary files, databases, and services. This command is commonly used in server environments to initialize Mage-OS after code deployment or during the installation of a fresh Mage-OS instance.
 
-Start by creating a new database for your Magento 2 installation. You can use a tool like phpMyAdmin or the command line
-to create the database.
-
-Next, open the `app/etc/env.php` file in your Magento 2 installation directory. Look for the following section:
-
-```php
-'db' => [
-    'table_prefix' => '',
-    'connection' => [
-        'default' => [
-            'host' => 'localhost',
-            'dbname' => 'magento',
-            'username' => 'root',
-            'password' => '',
-            'active' => '1'
-        ]
-    ]
-],
+```bash
+php bin/magento setup:install [options]
 ```
 
-Update the database settings according to your environment. Replace `'localhost'` with the hostname of your database
-server, `'magento'` with the name of your database, `'root'` with the username, and `''` with the password. Leave
-the `'table_prefix'` field empty unless you want to specify a prefix for your Magento tables.
+This command requires several options to properly configure the environment. It sets up the database connection, initializes admin credentials, configures base URLs, and installs required modules.
 
-## Step 3: Run the Installation Wizard
+### Example command
 
-Once the database is configured, you can run the Magento 2 installation wizard. Open your web browser and navigate to
-the URL where you placed your Magento 2 files.
-
-You will be greeted with the Magento 2 installation wizard. Follow the on-screen instructions to complete the
-installation process. Make sure to provide the necessary information, such as your store name, admin email, username,
-and password.
-
-During the installation, Magento 2 will perform various database operations and install the necessary tables. After the
-installation is complete, you will be redirected to the Magento admin panel.
+```bash
+php bin/magento setup:install \
+    --base-url="https://www.example.com/" \
+    --db-host="localhost" \
+    --db-name="magento_db" \
+    --db-user="magento_user" \
+    --db-password="password123" \
+    --admin-firstname="Admin" \
+    --admin-lastname="User" \
+    --admin-email="admin@example.com" \
+    --admin-user="admin" \
+    --admin-password="Admin123!" \
+    --language="en_US" \
+    --currency="USD" \
+    --timezone="America/Chicago" \
+    --use-rewrites="1"
+```
 
 ## Step 4: Enable the Magento 2 Cron Job
 
-Magento 2 relies on a cron job to perform scheduled tasks, such as indexing, cache flushing, and sending email
-notifications. To enable the Magento 2 cron job, you need to add a cron job entry to your server.
+Mage-OS relies on a cron job to perform scheduled tasks, such as indexing, cache flushing, and sending email
+notifications. To enable the Mage-OS cron job, you need to add a cron job entry to your server.
 
 Open your command line interface and run the following command:
 
@@ -127,11 +115,11 @@ This command will open the cron job configuration file. Add the following line t
 Replace `<path-to-php>` with the path to your PHP binary and `<magento-root>` with the path to your Magento 2
 installation directory.
 
-Save the file and exit the editor. The cron job will now run every minute and execute the Magento 2 cron tasks.
+Save the file and exit the editor. The cron job will now run every minute and execute the Mage-OS cron tasks.
 
 ## Conclusion
 
-Congratulations! You have successfully installed Magento 2 on your server. You can now start building your online store
+Congratulations! You have successfully installed Mage-OS on your server. You can now start building your online store
 and customizing it to fit your needs.
 
-Please refer to the official Magento 2 documentation for more information on how to configure and use Magento 2.
+Please refer to the official Mage-OS documentation for more information on how to configure and use Mage-OS.
