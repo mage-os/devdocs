@@ -31,6 +31,7 @@ composer create-project --repository-url=https://repo.mage-os.org/ mage-os/proje
 This command will download the latest version of Mage-OS and all its dependencies.
 
 ### Option: Install Magento with a Mage-OS Mirror
+
 If you would prefer to use Magento instead of Mage-OS, you can do that by using this command instead:
 
 ```bash
@@ -41,6 +42,7 @@ There are numerous mirror providers. You can see the full list and pick from oth
 [https://mage-os.org/distribution/#magento-mirrors](https://mage-os.org/distribution/#magento-mirrors).
 
 ### Option: Add Magento Marketplace support
+
 If you install Mage-OS, or Magento 2 using a
 [Magento mirror](https://mage-os.org/distribution/#magento-mirrors), you will not have automatic access to
 Magento / Adobe Commerce Marketplace. To install extensions from Marketplace, you need to configure
@@ -52,7 +54,8 @@ It is also recommended that you either make use of Composer's
 [repository filtering](https://getcomposer.org/doc/articles/repository-priorities.md#filtering-packages) features
 (or both) to allow both the Mage-OS (or mirror) and Marketplace repositories to coexist in your project.
 
-An example Composer repository configuration is given below:
+An example Composer repository configuration, adding repo.magento.com for `vendorC` and `vendorE` packages only:
+
 ```json
 "repositories": {
     "mage-os": {
@@ -72,13 +75,17 @@ An example Composer repository configuration is given below:
 
 ## Step 2: Run install from command line
 
-The bin/magento setup:install command is a vital part of the Mage-OS installation process. It automates the setup of a new Mage-OS instance by configuring necessary files, databases, and services. This command is commonly used in server environments to initialize Mage-OS after code deployment or during the installation of a fresh Mage-OS instance.
+The bin/magento setup:install command is a vital part of the Mage-OS installation process. It automates the setup
+of a new Mage-OS instance by configuring necessary files, databases, and services. This command is commonly used
+in server environments to initialize Mage-OS after code deployment or during the installation of a fresh Mage-OS
+instance.
 
 ```bash
 php bin/magento setup:install [options]
 ```
 
-This command requires several options to properly configure the environment. It sets up the database connection, initializes admin credentials, configures base URLs, and installs required modules.
+This command requires several options to properly configure the environment. It sets up the database connection,
+initializes admin credentials, configures base URLs, and installs required modules.
 
 Please create a database in MySQL or MariaDB to contain your new Mage-OS or Magento installation.
 
@@ -108,9 +115,9 @@ php bin/magento setup:install \
     --timezone="America/Chicago"
 ```
 
-Some additional steps
+### Some additional steps
 
-Then set your secure and unsecure base url:
+After the installation completes, set your site URL:
 
 ```bash
 bin/magento config:set web/unsecure/base_url "https://www.example.com"
@@ -121,11 +128,13 @@ bin/magento config:set web/secure/use_in_adminhtml 1
 ```
 
 Enable web server url rewrites for SEO friendly urls:
+
 ```bash
 bin/magento config:set web/seo/use_rewrites 1
 ```
 
-Reindex all indexers and flush the cache
+Reindex all indexers and flush the cache:
+
 ```bash
 bin/magento indexer:reindex
 bin/magento cache:flush
@@ -159,4 +168,5 @@ Congratulations! You have successfully installed Mage-OS on your server. You can
 and customizing it to fit your needs. The `setup:install` command from Step 2 should have given you an admin URL.
 Open that and enter the admin username and password you set to log in and start using your new site.
 
-If you have any trouble installing Mage-OS, please reach out in the #help channel on http://chat.mage-os.org .
+If you have any trouble installing Mage-OS, please reach out in the #help channel on 
+[http://chat.mage-os.org](http://chat.mage-os.org).
