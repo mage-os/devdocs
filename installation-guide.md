@@ -82,15 +82,22 @@ This command requires several options to properly configure the environment. It 
 
 Please create a database in MySQL or MariaDB to contain your new Mage-OS or Magento installation.
 
+For search engine Mage-OS supports Elasticsearch 7, Elasticsearch 8 and OpenSearch.
+
 ### Example command
 
 ```bash
 php bin/magento setup:install \
-    --base-url="https://www.example.com/" \
     --db-host="localhost" \
     --db-name="magento_db" \
     --db-user="magento_user" \
     --db-password="password123" \
+    --search-engine=opensearch \
+    --opensearch-host=opensearch \
+    --opensearch-port=9200 \
+    --opensearch-index-prefix=magento2 \
+    --opensearch-enable-auth=0 \
+    --opensearch-timeout=15 \
     --admin-firstname="Admin" \
     --admin-lastname="User" \
     --admin-email="admin@example.com" \
@@ -100,6 +107,29 @@ php bin/magento setup:install \
     --currency="USD" \
     --timezone="America/Chicago" \
     --use-rewrites="1"
+```
+
+Some additional steps
+
+Then set your secure and unsecure base url:
+
+```bash
+bin/magento config:set web/unsecure/base_url "https://www.example.com"
+bin/magento config:set web/secure/base_url "https://www.example.com"
+
+bin/magento config:set web/secure/use_in_frontend 1
+bin/magento config:set web/secure/use_in_adminhtml 1
+```
+
+Enable web server url rewrites for SEO friendly urls:
+```bash
+bin/magento config:set web/seo/use_rewrites 1
+```
+
+Reindex all indexers and flush the cache
+```bash
+bin/magento indexer:reindex
+bin/magento cache:flush
 ```
 
 ## Step 3: Enable the Magento 2 Cron Job
