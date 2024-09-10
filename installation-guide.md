@@ -105,8 +105,7 @@ php bin/magento setup:install \
     --admin-password="Admin123!" \
     --language="en_US" \
     --currency="USD" \
-    --timezone="America/Chicago" \
-    --use-rewrites="1"
+    --timezone="America/Chicago"
 ```
 
 Some additional steps
