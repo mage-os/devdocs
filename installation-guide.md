@@ -30,29 +30,34 @@ composer create-project --repository-url=https://repo.mage-os.org/ mage-os/proje
 
 This command will download the latest version of Mage-OS and all its dependencies.
 
-### Using Mage-OS Mirrors
-When opting to install Magento 2 using one of the
-[Mage-OS mirror repositories](https://mage-os.org/distribution/#magento-mirrors), you will still need to configure
-`repo.magento.com` as one of your Composer repositories in order to download and install any of the modules you may have
-purchased from the Magento marketplace.
+### Option: Install Magento with a Mage-OS Mirror
+If you would prefer to use Magento instead of Mage-OS, you can do that by using this command instead:
+
+```bash
+composer create-project --repository-url=https://mirror.mage-os.org/ magento/project-community-edition
+```
+
+There are numerous mirror providers. You can see the full list and pick from others at
+[https://mage-os.org/distribution/#magento-mirrors](https://mage-os.org/distribution/#magento-mirrors).
+
+### Option: Add Magento Marketplace support
+If you install Mage-OS, or Magento 2 using a
+[Magento mirror](https://mage-os.org/distribution/#magento-mirrors), you will not have automatic access to
+Magento / Adobe Commerce Marketplace. To install extensions from Marketplace, you need to configure
+`repo.magento.com` as a composer repository. This will let you install any of the modules you may have
+purchased from the Magento Marketplace.
 
 It is also recommended that you either make use of Composer's
 [repository prioritisation](https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories) or
 [repository filtering](https://getcomposer.org/doc/articles/repository-priorities.md#filtering-packages) features
-(or both) to allow both the Mage-OS mirror and Magento repositories to coexist in your project.
+(or both) to allow both the Mage-OS (or mirror) and Marketplace repositories to coexist in your project.
 
 An example Composer repository configuration is given below:
 ```json
 "repositories": {
-    "mage-os-mirror": {
+    "mage-os": {
         "type": "composer",
-        "url": "https://mirror.mage-os.org/",
-        "only": [
-            "magento/*",
-            "paypal/*",
-            "vendorA/*",
-            "vendorB/module-b"
-        ]
+        "url": "https://repo.mage-os.org/"
     },
     "magento-marketplace": {
         "type": "composer",
@@ -75,6 +80,8 @@ php bin/magento setup:install [options]
 
 This command requires several options to properly configure the environment. It sets up the database connection, initializes admin credentials, configures base URLs, and installs required modules.
 
+Please create a database in MySQL or MariaDB to contain your new Mage-OS or Magento installation.
+
 ### Example command
 
 ```bash
@@ -95,7 +102,7 @@ php bin/magento setup:install \
     --use-rewrites="1"
 ```
 
-## Step 4: Enable the Magento 2 Cron Job
+## Step 3: Enable the Magento 2 Cron Job
 
 Mage-OS relies on a cron job to perform scheduled tasks, such as indexing, cache flushing, and sending email
 notifications. To enable the Mage-OS cron job, you need to add a cron job entry to your server.
@@ -120,6 +127,7 @@ Save the file and exit the editor. The cron job will now run every minute and ex
 ## Conclusion
 
 Congratulations! You have successfully installed Mage-OS on your server. You can now start building your online store
-and customizing it to fit your needs.
+and customizing it to fit your needs. The `setup:install` command from Step 2 should have given you an admin URL.
+Open that and enter the admin username and password you set to log in and start using your new site.
 
-Please refer to the official Mage-OS documentation for more information on how to configure and use Mage-OS.
+If you have any trouble installing Mage-OS, please reach out in the #help channel on http://chat.mage-os.org .
