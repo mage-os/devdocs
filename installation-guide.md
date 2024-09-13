@@ -10,12 +10,22 @@ you will be able to successfully install Mage-OS and start building your online 
 
 ## Prerequisites
 
-Before proceeding with the installation, please ensure that your server meets the following prerequisites:
+Before installation, ensure your server fulfills the following requirements:
 
-- PHP 8.1 or later
-- MySQL 8.1 or later
-- Apache or Nginx web server
-- Composer 2
+- PHP: 8.2 or 8.1
+- Database: MySQL 8.0 or MariaDB 10.6
+- Search Engine: Elasticsearch 8.7 or OpenSearch 2.5
+- Web Server: Apache 2.4 or nginx 1.24
+- Composer 2.5
+
+**Recommended (Optional):**
+
+- RabbitMQ 3.11
+- Redis 7.0
+- Varnish 7.3
+
+For AWS users, consider using [AWS ElastiCache]((https://aws.amazon.com/elasticache/)) and other services for
+compatibility.
 
 ## Step 1: Download Mage-OS
 
@@ -73,46 +83,76 @@ An example Composer repository configuration, adding repo.magento.com for `vendo
 },
 ```
 
-## Step 2: Run install from command line
+## Step 2: Installation
 
-The bin/magento setup:install command is a vital part of the Mage-OS installation process. It automates the setup
-of a new Mage-OS instance by configuring necessary files, databases, and services. This command is commonly used
-in server environments to initialize Mage-OS after code deployment or during the installation of a fresh Mage-OS
-instance.
+Post Composer package installation, your directory should resemble:
 
-```bash
-php bin/magento setup:install [options]
+```shell
+YourWorkingDirectory
+|- CHANGELOG.md
+|- LICENSE.txt
+|- app/
+|- composer.json
+|- generated/
+|- nginx.conf.sample
+|- pub/
+|- vendor/
+|- COPYING.txt
+|- LICENSE_AFL.txt
+|- auth.json.sample
+|- composer.lock
+|- grunt-config.json.sample
+|- package.json.sample
+|- setup/
+|- Gruntfile.js.sample
+|- SECURITY.md
+|- bin/
+|  |- magento
+|- dev/
+|- lib/
+|- phpserver/
+|- var/
 ```
 
-This command requires several options to properly configure the environment. It sets up the database connection,
-initializes admin credentials, configures base URLs, and installs required modules.
+You can now install Magento's Database and set up the connected services, like Elasticsearch/OpenSearch or Redis.
+Although Magento doesn't require Redis, it is highly recommended to use it up front for your Session and Config Cache
+Storage. To install Magento, we can use Magento's built-in Command-Line-Tool `bin/magento`.
+
+The following command installs the Magento Database, configures Elasticsearch as the Search Engine, RabbitMQ for async
+processes, and uses Redis to store sessions, config cache, and the full page cache in separate internal databases. 
+All configuration can be adjusted later. Run `bin/magento setup:install --help` to see the full list of available
+parameters.
 
 Please create a database in MySQL or MariaDB to contain your new Mage-OS or Magento installation.
 
-For search engine Mage-OS supports Elasticsearch 7, Elasticsearch 8 and OpenSearch.
-
-### Example command
-
-```bash
-php bin/magento setup:install \
-    --db-host="localhost" \
-    --db-name="magento_db" \
-    --db-user="magento_user" \
-    --db-password="password123" \
+```shell
+bin/magento setup:install \
+    --amqp-host=RABBIT_MQ_HOST \
+    --amqp-port=RABBIT_MQ_PORT \
+    --amqp-user=RABBIT_MQ_USER \
+    --amqp-password=RABBIT_MQ_PASSWORD \
+    --db-host=DATABASE_HOST \
+    --db-name=DATABASE_NAME \
+    --db-user=DATABASE_USER \
+    --db-password=DATABASE_PASSWORD \
     --search-engine=opensearch \
-    --opensearch-host=opensearch \
-    --opensearch-port=9200 \
-    --opensearch-index-prefix=magento2 \
-    --opensearch-enable-auth=0 \
+    --opensearch-host=OPENSEARCH_HOST \
+    --opensearch-port=OPENSEARCH_PORT \
+    --opensearch-index-prefix=OPENSEARCH_INDEX_PREFIX \
     --opensearch-timeout=15 \
-    --admin-firstname="Admin" \
-    --admin-lastname="User" \
-    --admin-email="admin@example.com" \
-    --admin-user="admin" \
-    --admin-password="Admin123!" \
-    --language="en_US" \
-    --currency="USD" \
-    --timezone="America/Chicago"
+    --session-save=redis \
+    --session-save-redis-host=REDIS_HOST \
+    --session-save-redis-port=REDIS_PORT \
+    --session-save-redis-db=0 \
+    --session-save-redis-max-concurrency=20 \
+    --cache-backend=redis \
+    --cache-backend-redis-server=REDIS_HOST \
+    --cache-backend-redis-db=1 \
+    --cache-backend-redis-port=REDIS_PORT \
+    --page-cache=redis \
+    --page-cache-redis-server=REDIS_HOST \
+    --page-cache-redis-db=2 \
+    --page-cache-redis-port=REDIS_PORT
 ```
 
 ### Some additional steps
@@ -127,7 +167,7 @@ bin/magento config:set web/secure/use_in_frontend 1
 bin/magento config:set web/secure/use_in_adminhtml 1
 ```
 
-Enable web server url rewrites for SEO friendly urls:
+Enable URL rewrites:
 
 ```bash
 bin/magento config:set web/seo/use_rewrites 1
@@ -147,20 +187,23 @@ notifications. To enable the Mage-OS cron job, you need to add a cron job entry 
 
 Open your command line interface and run the following command:
 
-```bash
-crontab -e
+```shell
+bin/magento cron:install
 ```
 
-This command will open the cron job configuration file. Add the following line to the file:
+Verify the command's success with:
 
-```bash
-* * * * * <path-to-php> <magento-root>/bin/magento cron:run >> <magento-root>/var/log/cron.log
+```shell
+crontab -l
 ```
 
-Replace `<path-to-php>` with the path to your PHP binary and `<magento-root>` with the path to your Magento 2
-installation directory.
+You should see output like:
 
-Save the file and exit the editor. The cron job will now run every minute and execute the Mage-OS cron tasks.
+```shell
+#~ MAGENTO START 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
+* * * * * /usr/bin/php /var/www/html/bin/magento cron:run 2>&1 | grep -v "Ran jobs by schedule" >> /var/www/html/var/log/magento.cron.log
+#~ MAGENTO END 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
+```
 
 ## Conclusion
 
@@ -170,3 +213,158 @@ Open that and enter the admin username and password you set to log in and start 
 
 If you have any trouble installing Mage-OS, please reach out in the #help channel on 
 [http://chat.mage-os.org](http://chat.mage-os.org).
+
+
+## Option: Local Development with Warden
+
+If you're working on MacOS or Linux and want to install Magento locally, we highly recommend the docker-based dev
+environment [warden](https://warden.dev/). Follow the steps below after
+you [installed warden](https://docs.warden.dev/installing.html).
+
+After you run through the steps below, you will have fully configured Magento 2 running locally with Redis, OpenSearch,
+RabbitMQ, MariaDB, SSL, PHP, Xdebug, and Varnish.
+
+> **Note**
+> The steps below are provided by the official warden documentation.
+
+**Create a new environment**
+
+```shell
+warden env-init YOUR_PROJECTNAME magento2
+```
+
+**Sign an SSL certificate for use with the project**
+
+```shell
+warden sign-certificate YOUR_PROJECTNAME.test
+```
+
+**Spin up the environment**
+
+```shell
+warden env up
+```
+
+**Access your shell**
+
+```shell
+warden shell
+```
+
+**Ensure `pub/static` is available**
+
+```shell
+mkdir -p pub/static
+```
+
+**Install the Application**
+
+```shell
+bin/magento setup:install \
+     --backend-frontname=backend \
+     --amqp-host=rabbitmq \
+     --amqp-port=5672 \
+     --amqp-user=guest \
+     --amqp-password=guest \
+     --db-host=db \
+     --db-name=magento \
+     --db-user=magento \
+     --db-password=magento \
+     --search-engine=opensearch \
+     --opensearch-host=opensearch \
+     --opensearch-port=9200 \
+     --opensearch-index-prefix=magento2 \
+     --opensearch-enable-auth=0 \
+     --opensearch-timeout=15 \
+     --http-cache-hosts=varnish:80 \
+     --session-save=redis \
+     --session-save-redis-host=redis \
+     --session-save-redis-port=6379 \
+     --session-save-redis-db=2 \
+     --session-save-redis-max-concurrency=20 \
+     --cache-backend=redis \
+     --cache-backend-redis-server=redis \
+     --cache-backend-redis-db=0 \
+     --cache-backend-redis-port=6379 \
+     --page-cache=redis \
+     --page-cache-redis-server=redis \
+     --page-cache-redis-db=1 \
+     --page-cache-redis-port=6379
+```
+
+**Configure the Application**
+
+```shell
+bin/magento config:set --lock-env web/unsecure/base_url "https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/"
+bin/magento config:set --lock-env web/secure/base_url "https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/"
+bin/magento config:set --lock-env web/secure/offloader_header X-Forwarded-Proto
+bin/magento config:set --lock-env web/secure/use_in_frontend 1
+bin/magento config:set --lock-env web/secure/use_in_adminhtml 1
+bin/magento config:set --lock-env web/seo/use_rewrites 1
+bin/magento config:set --lock-env system/full_page_cache/caching_application 2
+bin/magento config:set --lock-env system/full_page_cache/ttl 604800
+bin/magento config:set --lock-env catalog/search/enable_eav_indexer 1
+bin/magento config:set --lock-env dev/static/sign 0
+bin/magento deploy:mode:set -s developer
+bin/magento cache:disable block_html full_page
+bin/magento indexer:reindex
+bin/magento cache:flush
+bin/magento cache:enable
+```
+
+**Set up an admin user incl. 2FA**
+
+Magento requires admin users to use 2FA. Although the use of 2FA is highly recommended on production sites, developers
+often find it tedious to set it up locally. Mark Shust created a widely
+used [Magento Extension](https://github.com/markshust/magento2-module-disabletwofactorauth) to disable 2FA **locally**.
+
+> **Warning**
+> Don't disable 2FA in internet-facing installations. Your system's protection will suffer otherwise.
+
+```shell
+ADMIN_PASS="$(pwgen -n1 16)"
+ADMIN_USER=localadmin
+
+bin/magento admin:user:create \
+    --admin-password="${ADMIN_PASS}" \
+    --admin-user="${ADMIN_USER}" \
+    --admin-firstname="Local" \
+    --admin-lastname="Admin" \
+    --admin-email="${ADMIN_USER}@example.com"
+printf "u: %s\np: %s\n" "${ADMIN_USER}" "${ADMIN_PASS}"
+
+## Configure 2FA provider
+OTPAUTH_QRI=
+# Python 2: TFA_SECRET=$(python -c "import base64; print base64.b32encode('$(pwgen -A1 128)')" | sed 's/=*$//')
+# Python 3:
+TFA_SECRET=$(python3 -c "import base64; print(base64.b32encode(bytearray('$(pwgen -A1 128)', 'ascii')).decode('utf-8'))" | sed 's/=*$//')
+OTPAUTH_URL=$(printf "otpauth://totp/%s%%3Alocaladmin%%40example.com?issuer=%s&secret=%s" \
+    "${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}" "${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}" "${TFA_SECRET}"
+)
+
+bin/magento config:set --lock-env twofactorauth/general/force_providers google
+bin/magento security:tfa:google:set-secret "${ADMIN_USER}" "${TFA_SECRET}"
+
+printf "%s\n\n" "${OTPAUTH_URL}"
+printf "2FA Authenticator Codes:\n%s\n" "$(oathtool -s 30 -w 10 --totp --base32 "${TFA_SECRET}")"
+
+segno "${OTPAUTH_URL}" -s 4 -o "pub/media/${ADMIN_USER}-totp-qr.png"
+printf "%s\n\n" "https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/media/${ADMIN_USER}-totp-qr.png?t=$(date +%s)"
+```
+
+**Set up an admin user without 2FA**
+
+```shell
+ADMIN_PASS="$(pwgen -n1 16)"
+ADMIN_USER=localadmin
+
+bin/magento admin:user:create \
+    --admin-password="${ADMIN_PASS}" \
+    --admin-user="${ADMIN_USER}" \
+    --admin-firstname="Local" \
+    --admin-lastname="Admin" \
+    --admin-email="${ADMIN_USER}@example.com"
+printf "u: %s\np: %s\n" "${ADMIN_USER}" "${ADMIN_PASS}"
+```
+
+You should now be able to access your site under `https://app.YOUR_PROJECTNAME.test/`.
