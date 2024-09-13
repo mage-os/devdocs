@@ -38,7 +38,6 @@ the following command:
 composer create-project --repository-url=https://repo.mage-os.org/ mage-os/project-community-edition .
 ```
 
-
 This command will download the latest version of Mage-OS and all its dependencies.
 
 ### Option: Install Magento with a Mage-OS Mirror
@@ -120,14 +119,14 @@ Although Magento doesn't require Redis, it is highly recommended to use it up fr
 Storage. To install Magento, we can use Magento's built-in Command-Line-Tool `bin/magento`.
 
 The following command installs the Magento Database, configures Elasticsearch as the Search Engine, RabbitMQ for async
-processes, and uses Redis to store sessions, config cache, and the full page cache in separate internal databases. The
-admin backend will be available under `https://yourdomain.com/backend` as configured via `--backend-frontname=backend`.
-The configuration can be adjusted at all times. Run `bin/magento setup:install --help` to see the full list of available
+processes, and uses Redis to store sessions, config cache, and the full page cache in separate internal databases. 
+All configuration can be adjusted later. Run `bin/magento setup:install --help` to see the full list of available
 parameters.
 
+Please create a database in MySQL or MariaDB to contain your new Mage-OS or Magento installation.
+
 ```shell
-    bin/magento setup:install \
-    --backend-frontname=backend \
+bin/magento setup:install \
     --amqp-host=RABBIT_MQ_HOST \
     --amqp-port=RABBIT_MQ_PORT \
     --amqp-user=RABBIT_MQ_USER \
@@ -156,48 +155,6 @@ parameters.
     --page-cache-redis-port=REDIS_PORT
 ```
 
-## Step 2: Run install from command line
-
-The bin/magento setup:install command is a vital part of the Mage-OS installation process. It automates the setup
-of a new Mage-OS instance by configuring necessary files, databases, and services. This command is commonly used
-in server environments to initialize Mage-OS after code deployment or during the installation of a fresh Mage-OS
-instance.
-
-```bash
-php bin/magento setup:install [options]
-```
-
-This command requires several options to properly configure the environment. It sets up the database connection,
-initializes admin credentials, configures base URLs, and installs required modules.
-
-Please create a database in MySQL or MariaDB to contain your new Mage-OS or Magento installation.
-
-For search engine Mage-OS supports Elasticsearch 7, Elasticsearch 8 and OpenSearch.
-
-### Example command
-
-```bash
-php bin/magento setup:install \
-    --db-host="localhost" \
-    --db-name="magento_db" \
-    --db-user="magento_user" \
-    --db-password="password123" \
-    --search-engine=opensearch \
-    --opensearch-host=opensearch \
-    --opensearch-port=9200 \
-    --opensearch-index-prefix=magento2 \
-    --opensearch-enable-auth=0 \
-    --opensearch-timeout=15 \
-    --admin-firstname="Admin" \
-    --admin-lastname="User" \
-    --admin-email="admin@example.com" \
-    --admin-user="admin" \
-    --admin-password="Admin123!" \
-    --language="en_US" \
-    --currency="USD" \
-    --timezone="America/Chicago"
-```
-
 ### Some additional steps
 
 After the installation completes, set your site URL:
@@ -210,7 +167,7 @@ bin/magento config:set web/secure/use_in_frontend 1
 bin/magento config:set web/secure/use_in_adminhtml 1
 ```
 
-Enable web server url rewrites for SEO friendly urls:
+Enable URL rewrites:
 
 ```bash
 bin/magento config:set web/seo/use_rewrites 1
@@ -238,7 +195,11 @@ Verify the command's success with:
 
 ```shell
 crontab -l
+```
 
+You should see output like:
+
+```shell
 #~ MAGENTO START 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
 * * * * * /usr/bin/php /var/www/html/bin/magento cron:run 2>&1 | grep -v "Ran jobs by schedule" >> /var/www/html/var/log/magento.cron.log
 #~ MAGENTO END 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
@@ -254,7 +215,7 @@ If you have any trouble installing Mage-OS, please reach out in the #help channe
 [http://chat.mage-os.org](http://chat.mage-os.org).
 
 
-## Another Option: Local Development with Warden
+## Option: Local Development with Warden
 
 If you're working on MacOS or Linux and want to install Magento locally, we highly recommend the docker-based dev
 environment [warden](https://warden.dev/). Follow the steps below after
