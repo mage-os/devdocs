@@ -1,12 +1,12 @@
-# Installation Guide for Magento 2
+# Installation Guide for Mage-OS
 
 [TOC]
 
 ## Introduction
 
-This installation guide provides step-by-step instructions for installing Magento 2 on your server or local machine. The
-guide assumes you have a basic understanding of programming concepts, specifically PHP and Magento 2. By following these
-instructions, you will be able to successfully install Magento 2 and start building your online store.
+This installation guide provides step-by-step instructions for installing Mage-OS on your server. The guide assumes
+you have a basic understanding of programming concepts, specifically PHP and Magento 2. By following these instructions,
+you will be able to successfully install Mage-OS and start building your online store.
 
 ## Prerequisites
 
@@ -27,55 +27,60 @@ Before installation, ensure your server fulfills the following requirements:
 For AWS users, consider using [AWS ElastiCache]((https://aws.amazon.com/elasticache/)) and other services for
 compatibility.
 
-## Step 1: Download mage-os/magento 2
+## Step 1: Download Mage-OS
 
-The first step in the installation process is to download the Magento 2 package. You can download the packages from the
-official [Mage-OS Mirrors](https://mage-os.org/distribution/).
+The first step in the installation process is to download the Mage-OS package. You can use Composer to install it.
 
-To download Magento 2 using Composer, open your command line interface and navigate to your project directory. Then, run
+To download Mage-OS using Composer, open your command line interface and navigate to your project directory. Then, run
 the following command:
 
 ```bash
 composer create-project --repository-url=https://repo.mage-os.org/ mage-os/project-community-edition .
 ```
 
-This command will download the latest version of Mage-OS, our backward-compatible fork of Magento 2, and all its
-dependencies.
 
-### Using Mage-OS Mirrors
+This command will download the latest version of Mage-OS and all its dependencies.
 
-When opting to install Magento 2 using one of
-the [Mage-OS mirror repositories](https://mage-os.org/distribution/#magento-mirrors), you will still need to configure
-`repo.magento.com` as one of your Composer repositories in order to download and install any of the modules you may have
-purchased from the Magento marketplace.
+### Option: Install Magento with a Mage-OS Mirror
+
+If you would prefer to use Magento instead of Mage-OS, you can do that by using this command instead:
+
+```bash
+composer create-project --repository-url=https://mirror.mage-os.org/ magento/project-community-edition
+```
+
+There are numerous mirror providers. You can see the full list and pick from others at
+[https://mage-os.org/distribution/#magento-mirrors](https://mage-os.org/distribution/#magento-mirrors).
+
+### Option: Add Magento Marketplace support
+
+If you install Mage-OS, or Magento 2 using a
+[Magento mirror](https://mage-os.org/distribution/#magento-mirrors), you will not have automatic access to
+Magento / Adobe Commerce Marketplace. To install extensions from Marketplace, you need to configure
+`repo.magento.com` as a composer repository. This will let you install any of the modules you may have
+purchased from the Magento Marketplace.
 
 It is also recommended that you either make use of Composer's
 [repository prioritisation](https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories) or
 [repository filtering](https://getcomposer.org/doc/articles/repository-priorities.md#filtering-packages) features
-(or both) to allow both the Mage-OS mirror and Magento repositories to coexist in your project.
+(or both) to allow both the Mage-OS (or mirror) and Marketplace repositories to coexist in your project.
 
-An example Composer repository configuration is given below:
+An example Composer repository configuration, adding repo.magento.com for `vendorC` and `vendorE` packages only:
 
 ```json
 "repositories": {
-"mage-os-mirror": {
-"type": "composer",
-"url": "https://mirror.mage-os.org/",
-"only": [
-"magento/*",
-"paypal/*",
-"vendorA/*",
-"vendorB/module-b"
-]
-},
-"magento-marketplace": {
-"type": "composer",
-"url": "https://repo.magento.com",
-"only": [
-"vendorC/module-d",
-"vendorE/*"
-]
-},
+    "mage-os": {
+        "type": "composer",
+        "url": "https://repo.mage-os.org/"
+    },
+    "magento-marketplace": {
+        "type": "composer",
+        "url": "https://repo.magento.com",
+        "only": [
+            "vendorC/module-d",
+            "vendorE/*"
+        ]
+    },
 },
 ```
 
@@ -110,7 +115,7 @@ YourWorkingDirectory
 |- var/
 ```
 
-ou can now install Magento's Database and set up the connected services, like Elasticsearch/OpenSearch or Redis.
+You can now install Magento's Database and set up the connected services, like Elasticsearch/OpenSearch or Redis.
 Although Magento doesn't require Redis, it is highly recommended to use it up front for your Session and Config Cache
 Storage. To install Magento, we can use Magento's built-in Command-Line-Tool `bin/magento`.
 
@@ -151,7 +156,105 @@ parameters.
     --page-cache-redis-port=REDIS_PORT
 ```
 
-### Local Development with Warden
+## Step 2: Run install from command line
+
+The bin/magento setup:install command is a vital part of the Mage-OS installation process. It automates the setup
+of a new Mage-OS instance by configuring necessary files, databases, and services. This command is commonly used
+in server environments to initialize Mage-OS after code deployment or during the installation of a fresh Mage-OS
+instance.
+
+```bash
+php bin/magento setup:install [options]
+```
+
+This command requires several options to properly configure the environment. It sets up the database connection,
+initializes admin credentials, configures base URLs, and installs required modules.
+
+Please create a database in MySQL or MariaDB to contain your new Mage-OS or Magento installation.
+
+For search engine Mage-OS supports Elasticsearch 7, Elasticsearch 8 and OpenSearch.
+
+### Example command
+
+```bash
+php bin/magento setup:install \
+    --db-host="localhost" \
+    --db-name="magento_db" \
+    --db-user="magento_user" \
+    --db-password="password123" \
+    --search-engine=opensearch \
+    --opensearch-host=opensearch \
+    --opensearch-port=9200 \
+    --opensearch-index-prefix=magento2 \
+    --opensearch-enable-auth=0 \
+    --opensearch-timeout=15 \
+    --admin-firstname="Admin" \
+    --admin-lastname="User" \
+    --admin-email="admin@example.com" \
+    --admin-user="admin" \
+    --admin-password="Admin123!" \
+    --language="en_US" \
+    --currency="USD" \
+    --timezone="America/Chicago"
+```
+
+### Some additional steps
+
+After the installation completes, set your site URL:
+
+```bash
+bin/magento config:set web/unsecure/base_url "https://www.example.com"
+bin/magento config:set web/secure/base_url "https://www.example.com"
+
+bin/magento config:set web/secure/use_in_frontend 1
+bin/magento config:set web/secure/use_in_adminhtml 1
+```
+
+Enable web server url rewrites for SEO friendly urls:
+
+```bash
+bin/magento config:set web/seo/use_rewrites 1
+```
+
+Reindex all indexers and flush the cache:
+
+```bash
+bin/magento indexer:reindex
+bin/magento cache:flush
+```
+
+## Step 3: Enable the Magento 2 Cron Job
+
+Mage-OS relies on a cron job to perform scheduled tasks, such as indexing, cache flushing, and sending email
+notifications. To enable the Mage-OS cron job, you need to add a cron job entry to your server.
+
+Open your command line interface and run the following command:
+
+```shell
+bin/magento cron:install
+```
+
+Verify the command's success with:
+
+```shell
+crontab -l
+
+#~ MAGENTO START 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
+* * * * * /usr/bin/php /var/www/html/bin/magento cron:run 2>&1 | grep -v "Ran jobs by schedule" >> /var/www/html/var/log/magento.cron.log
+#~ MAGENTO END 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
+```
+
+## Conclusion
+
+Congratulations! You have successfully installed Mage-OS on your server. You can now start building your online store
+and customizing it to fit your needs. The `setup:install` command from Step 2 should have given you an admin URL.
+Open that and enter the admin username and password you set to log in and start using your new site.
+
+If you have any trouble installing Mage-OS, please reach out in the #help channel on 
+[http://chat.mage-os.org](http://chat.mage-os.org).
+
+
+## Another Option: Local Development with Warden
 
 If you're working on MacOS or Linux and want to install Magento locally, we highly recommend the docker-based dev
 environment [warden](https://warden.dev/). Follow the steps below after
@@ -304,31 +407,3 @@ printf "u: %s\np: %s\n" "${ADMIN_USER}" "${ADMIN_PASS}"
 ```
 
 You should now be able to access your site under `https://app.YOUR_PROJECTNAME.test/`.
-
-## Step 3: Enable the Magento 2 Cron Job
-
-Magento 2 relies on a cron job to perform scheduled tasks, such as indexing, cache flushing, and sending email
-notifications. To enable the Magento 2 cron job, you need to add a cron job entry to your server.
-
-Open your command line interface and run the following command:
-
-```shell
-bin/magento cron:install
-```
-
-Verify the command's success with:
-
-```shell
-crontab -l
-
-#~ MAGENTO START 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
-* * * * * /usr/bin/php /var/www/html/bin/magento cron:run 2>&1 | grep -v "Ran jobs by schedule" >> /var/www/html/var/log/magento.cron.log
-#~ MAGENTO END 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
-```
-
-## Conclusion
-
-Congratulations! You have successfully installed Magento 2 on your server. You can now start building your online store
-and customizing it to fit your needs.
-
-Please refer to the official Magento 2 documentation for more information on how to configure and use Magento 2.
