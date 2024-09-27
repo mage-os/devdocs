@@ -2,25 +2,27 @@
 
 [TOC]
 
-Magento 2 allows the creation of custom shipping carriers to handle various shipping methods for different carriers or logistics providers. A custom shipping carrier can be added by creating a Magento 2 module and configuring the required fields to handle shipping calculations, carrier configurations, and frontend integration.
+Mage-OS allows the creation of custom shipping carriers to handle various shipping methods for different carriers or logistics providers. A custom shipping carrier can be added by creating a Mage-OS module and configuring the required fields to handle shipping calculations, carrier configurations, and frontend integration.
 
 ## Module Setup
 
 The first step in adding a custom shipping carrier is creating the necessary directory structure for the Mage-OS module:
 
 ```bash
-app/code/Vendor/ShippingCarrier/
+app/code/MageOS/ShippingCarrier/
 ├── registration.php
+├── composer.json
 ├── etc
 │   ├── module.xml
 │   ├── config.xml
-│   ├── system.xml
+│   ├── adminhtml
+        └── system.xml
 ├── Model
 │   └── Carrier
 │       └── CustomCarrier.php
 ```
 
-Create register module file `app/code/Vendor/ShippingCarrier/registration.php`
+Create register module file `app/code/MageOS/ShippingCarrier/registration.php`
 ```php
 <?php
 use Magento\Framework\Component\ComponentRegistrar;
@@ -32,18 +34,18 @@ ComponentRegistrar::register(
 );
 ```
 
-Next, you need to declare your module in `app/code/Vendor/ShippingCarrier/etc/module.xml`:
+Next, you need to declare your module in `app/code/MageOS/ShippingCarrier/etc/module.xml`:
 
 ```xml
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Vendor_ShippingCarrier" />
+    <module name="MageOS_ShippingCarrier"/>
 </config>
 ```
 
 ## Shipping Carrier Configuration
 
-In the `config.xml` file, define the shipping carrier's core settings, such as its active state, title, and allowed countries. Create `app/code/Vendor/ShippingCarrier/etc/config.xml`:
+In the `config.xml` file, define the shipping carrier's core settings, such as its active state, title, and allowed countries. Create `app/code/MageOS/ShippingCarrier/etc/config.xml`:
 
 ```xml
 <?xml version="1.0"?>
@@ -53,13 +55,11 @@ In the `config.xml` file, define the shipping carrier's core settings, such as i
             <customcarrier>
                 <active>1</active>
                 <title>Custom Shipping Carrier</title>
-                <name>Custom Carrier</name>
-                <allowspecific>0</allowspecific> <!-- Set to 1 to limit specific countries -->
-                <specificcountry>US,CA</specificcountry> <!-- Countries where shipping method is allowed -->
-                <model>Vendor\ShippingCarrier\Model\Carrier\CustomCarrier</model>
-                <handling_type>F</handling_type> <!-- Fixed handling fee -->
-                <handling_fee>10.00</handling_fee>
+                <name>Custom Shipping Method Name</name>
+                <shipping_cost>10</shipping_cost>
                 <sallowspecific>0</sallowspecific>
+                <sort_order>15</sort_order>
+                <model>MageOS\ShippingCarrier\Model\Carrier\CustomCarrier</model>
             </customcarrier>
         </carriers>
     </default>
@@ -72,29 +72,51 @@ Explanation:
 - title: The name displayed in the checkout.
 - name: Internal name of the carrier.
 - model: The path to the custom shipping carrier model.
-- handling_type: Type of handling fee (F for fixed or P for percent).
-- handling_fee: The amount of the handling fee.
+- shipping_cost: The amount of the handling fee.
 
 # Admin Configuration for Carrier
 
-To allow store administrators to configure the shipping method, we define settings in `app/code/Vendor/ShippingCarrier/etc/adminhtml/system.xml.`:
+To allow store administrators to configure the shipping method, we define settings in `app/code/MageOS/ShippingCarrier/etc/adminhtml/system.xml`:
 
 ```xml
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend/etc/system_file.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="carriers">
-            <group id="customcarrier" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Custom Shipping Carrier</label>
-                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable</label>
+            <group id="customcarrier" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Shipping Module</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Title</label>
                 </field>
-                <field id="handling_fee" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Handling Fee</label>
+                <field id="name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Method Name</label>
+                </field>
+                <field id="shipping_cost" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Shipping Cost</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="sallowspecific" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="showmethod" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Method if not applicable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>shipping-skip-hide</frontend_class>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sort Order</label>
                 </field>
             </group>
         </section>
@@ -110,51 +132,83 @@ The core logic for the custom shipping carrier is in the CustomCarrier.php model
 
 ```php
 <?php
-namespace Vendor\ShippingCarrier\Model\Carrier;
+declare(strict_types=1);
 
+namespace MageOS\ShippingCarrier\Model\Carrier;
+
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Quote\Model\Quote\Address\RateRequest;
+use Magento\Quote\Model\Quote\Address\RateResult\Method;
+use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
+use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
-use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Shipping\Model\Rate\Result;
+use Magento\Shipping\Model\Rate\ResultFactory;
+use Psr\Log\LoggerInterface;
 
 class CustomCarrier extends AbstractCarrier implements CarrierInterface
 {
     protected $_code = 'customcarrier';
 
+    protected $_isFixed = true;
+
+    private ResultFactory $rateResultFactory;
+
+    private MethodFactory $rateMethodFactory;
+
+    public function __construct(
+        ScopeConfigInterface $scopeConfig,
+        ErrorFactory $rateErrorFactory,
+        LoggerInterface $logger,
+        ResultFactory $rateResultFactory,
+        MethodFactory $rateMethodFactory,
+        array $data = []
+    ) {
+        parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
+
+        $this->rateResultFactory = $rateResultFactory;
+        $this->rateMethodFactory = $rateMethodFactory;
+    }
+
+    /**
+     * Custom Shipping Rates Collector
+     *
+     * @param RateRequest $request
+     * @return \Magento\Shipping\Model\Rate\Result|bool
+     */
     public function collectRates(RateRequest $request)
     {
         if (!$this->getConfigFlag('active')) {
             return false;
         }
 
-        /** @var \Magento\Shipping\Model\Rate\Result $result */
-        $result = $this->_rateResultFactory->create();
+        /** @var Method $method */
+        $method = $this->rateMethodFactory->create();
 
-        // Set shipping cost
-        $shippingPrice = 10.00;
-
-        /** @var \Magento\Quote\Model\Quote\Address\RateResult\Method $method */
-        $method = $this->_rateMethodFactory->create();
         $method->setCarrier($this->_code);
         $method->setCarrierTitle($this->getConfigData('title'));
 
         $method->setMethod($this->_code);
-        $method->setMethodTitle('Custom Carrier Method');
+        $method->setMethodTitle($this->getConfigData('name'));
 
+        $shippingPrice = (float)$this->getConfigData('shipping_cost');
         $method->setPrice($shippingPrice);
         $method->setCost($shippingPrice);
+        $method->setDataUsingMethod('cost', $shippingPrice);
 
+        /** @var Result $result */
+        $result = $this->rateResultFactory->create();
         $result->append($method);
 
         return $result;
     }
 
-    public function getAllowedMethods()
+    public function getAllowedMethods(): array
     {
         return [$this->_code => $this->getConfigData('name')];
     }
 }
-
 ```
 
 Explanation:
