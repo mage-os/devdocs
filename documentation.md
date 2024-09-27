@@ -73,6 +73,7 @@
 - ## Tutorials & Examples
     - [Collection of real-world examples, and step-by-step tutorials](/docs/{{version}}/collection-of-real-world-examples-and-step-by-step-tutorials)
     - [Case studies of problem-solving in Magento 2](/docs/{{version}}/case-studies-of-problem-solving-in-magento-2)
+    - [Add custom shipping carrier](/docs/{{version}}/add-custom-shipping-carrier)
 - ## Community & Support
     - [Get help and support](/docs/{{version}}/how-to-get-help-and-support)
     - [Community Contribution](/docs/{{version}}/how-to-contribute-to-the-magento-2-community)
