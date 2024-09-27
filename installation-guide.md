@@ -1,3 +1,8 @@
+---
+description: Learn how to install Mage-OS with this comprehensive guide. Includes step-by-step instructions, prerequisites, system requirements, and troubleshooting tips for setting up your eCommerce platform.
+keywords: Mage-OS installation, Mage-OS setup, Mage-OS prerequisites, eCommerce platform, system requirements, Mage-OS installation guide, Mage-OS documentation, install Mage-OS, Mage-OS troubleshooting.
+communityNote: false
+---
 # Installation Guide for Mage-OS
 
 [TOC]
