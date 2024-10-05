@@ -1,3 +1,7 @@
+---
+description: Explore the Mage-OS Basic Configuration guide for setting up system preferences, store settings, payment methods, and shipping options in Magento 2. Perfect for tailoring your eCommerce site to business needs.
+keywords: Mage-OS, Magento 2 configuration, basic settings, store setup, payment methods, shipping configuration, eCommerce, system settings, Magento 2 guide, Magento store customization, Magento basic setup
+---
 # Basic Configuration Documentation
 
 [TOC]
