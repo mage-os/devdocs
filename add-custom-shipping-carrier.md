@@ -27,6 +27,7 @@ app/code/MageOS/ShippingCarrier/
 ```
 
 Create register module file `app/code/MageOS/ShippingCarrier/registration.php`
+
 ```php
 <?php
 use Magento\Framework\Component\ComponentRegistrar;
@@ -231,6 +232,7 @@ Once the backend logic is in place, the custom shipping carrier will automatical
 if it's enabled and configured properly. The title and price will be displayed as defined in the carrier configuration.
 
 # Conclusion
+
 This guide walks through the basic setup of a custom shipping carrier in Mage-OS.
 The carrier integrates with Mage-OS’s shipping framework, allowing you to customize the shipping calculation
 and display it during the checkout process. You can extend this basic structure to integrate with third-party APIs,
