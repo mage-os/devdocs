@@ -74,7 +74,7 @@ Explanation:
 - model: The path to the custom shipping carrier model.
 - shipping_cost: The amount of the handling fee.
 
-# Admin Configuration for Carrier
+## Admin Configuration for Carrier
 
 To allow store administrators to configure the shipping method, we define settings in `app/code/MageOS/ShippingCarrier/etc/adminhtml/system.xml`:
 
@@ -126,7 +126,7 @@ To allow store administrators to configure the shipping method, we define settin
 
 This configuration allows administrators to enable the carrier, set a title, and configure a handling fee through the Mage-OS admin panel.
 
-# Shipping Carrier Model
+## Shipping Carrier Model
 
 The core logic for the custom shipping carrier is in the CustomCarrier.php model. This class extends Mage-OS's abstract shipping carrier class and implements the shipping calculation and rates.
 
@@ -216,9 +216,9 @@ Explanation:
 - collectRates(): Calculates shipping rates based on the quote request and returns them. Here, a fixed rate of 10.00 is used.
 - getAllowedMethods(): Returns the allowed shipping methods for this carrier.
 
-# Frontend Integration
+## Frontend Integration
 
 Once the backend logic is in place, the custom shipping carrier will automatically appear in the Mage-OS checkout if it's enabled and configured properly. The title and price will be displayed as defined in the carrier configuration.
 
-# Conclusion
+## Conclusion
 This guide walks through the basic setup of a custom shipping carrier in Mage-OS. The carrier integrates with Mage-OS’s shipping framework, allowing you to customize the shipping calculation and display it during the checkout process. You can extend this basic structure to integrate with third-party APIs, offer dynamic shipping rates, or introduce more complex shipping logic based on cart contents or customer information.
