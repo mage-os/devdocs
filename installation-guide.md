@@ -1,59 +1,81 @@
-# Installation Guide for Magento 2
+---
+description: Learn how to install Mage-OS with this comprehensive guide. Includes step-by-step instructions, prerequisites, system requirements, and troubleshooting tips for setting up your eCommerce platform.
+keywords: Mage-OS installation, Mage-OS setup, Mage-OS prerequisites, eCommerce platform, system requirements, Mage-OS installation guide, Mage-OS documentation, install Mage-OS, Mage-OS troubleshooting.
+communityNote: false
+---
+# Installation Guide for Mage-OS
 
 [TOC]
 
 ## Introduction
 
-This installation guide provides step-by-step instructions for installing Magento 2 on your server. The guide assumes
+This installation guide provides step-by-step instructions for installing Mage-OS on your server. The guide assumes
 you have a basic understanding of programming concepts, specifically PHP and Magento 2. By following these instructions,
-you will be able to successfully install Magento 2 and start building your online store.
+you will be able to successfully install Mage-OS and start building your online store.
 
 ## Prerequisites
 
-Before proceeding with the installation, please ensure that your server meets the following prerequisites:
+Before installation, ensure your server fulfills the following requirements:
 
-- PHP 8.1 or later
-- MySQL 8.1 or later
-- Apache or Nginx web server
-- Composer 2
+- PHP: 8.2 or 8.1
+- Database: MySQL 8.0 or MariaDB 10.6
+- Search Engine: Elasticsearch 8.7 or OpenSearch 2.5
+- Web Server: Apache 2.4 or nginx 1.24
+- Composer 2.5
 
-## Step 1: Download Magento 2
+**Recommended (Optional):**
 
-The first step in the installation process is to download the Magento 2 package. You can download the package from the
-official Magento website or use Composer to install it.
+- RabbitMQ 3.11
+- Redis 7.0
+- Varnish 7.3
 
-To download Magento 2 using Composer, open your command line interface and navigate to your project directory. Then, run
+For AWS users, consider using [AWS ElastiCache]((https://aws.amazon.com/elasticache/)) and other services for
+compatibility.
+
+## Step 1: Download Mage-OS
+
+The first step in the installation process is to download the Mage-OS package. You can use Composer to install it.
+
+To download Mage-OS using Composer, open your command line interface and navigate to your project directory. Then, run
 the following command:
 
 ```bash
-composer create-project --repository-url=https://mirror.mage-os.org/ magento/project-community-edition:2.4.6 .
+composer create-project --repository-url=https://repo.mage-os.org/ mage-os/project-community-edition .
 ```
 
-This command will download the latest version of Magento 2 and all its dependencies.
+This command will download the latest version of Mage-OS and all its dependencies.
 
-### Using Mage-OS Mirrors
-When opting to install Magento 2 using one of the
-[Mage-OS mirror repositories](https://mage-os.org/distribution/#magento-mirrors), you will still need to configure
-`repo.magento.com` as one of your Composer repositories in order to download and install any of the modules you may have
-purchased from the Magento marketplace.
+### Option: Install Magento with a Mage-OS Mirror
+
+If you would prefer to use Magento instead of Mage-OS, you can do that by using this command instead:
+
+```bash
+composer create-project --repository-url=https://mirror.mage-os.org/ magento/project-community-edition
+```
+
+There are numerous mirror providers. You can see the full list and pick from others at
+[https://mage-os.org/distribution/#magento-mirrors](https://mage-os.org/distribution/#magento-mirrors).
+
+### Option: Add Magento Marketplace support
+
+If you install Mage-OS, or Magento 2 using a
+[Magento mirror](https://mage-os.org/distribution/#magento-mirrors), you will not have automatic access to
+Magento / Adobe Commerce Marketplace. To install extensions from Marketplace, you need to configure
+`repo.magento.com` as a composer repository. This will let you install any of the modules you may have
+purchased from the Magento Marketplace.
 
 It is also recommended that you either make use of Composer's
 [repository prioritisation](https://getcomposer.org/doc/articles/repository-priorities.md#canonical-repositories) or
 [repository filtering](https://getcomposer.org/doc/articles/repository-priorities.md#filtering-packages) features
-(or both) to allow both the Mage-OS mirror and Magento repositories to coexist in your project.
+(or both) to allow both the Mage-OS (or mirror) and Marketplace repositories to coexist in your project.
 
-An example Composer repository configuration is given below:
+An example Composer repository configuration, adding repo.magento.com for `vendorC` and `vendorE` packages only:
+
 ```json
 "repositories": {
-    "mage-os-mirror": {
+    "mage-os": {
         "type": "composer",
-        "url": "https://mirror.mage-os.org/",
-        "only": [
-            "magento/*",
-            "paypal/*",
-            "vendorA/*",
-            "vendorB/module-b"
-        ]
+        "url": "https://repo.mage-os.org/"
     },
     "magento-marketplace": {
         "type": "composer",
@@ -66,72 +88,288 @@ An example Composer repository configuration is given below:
 },
 ```
 
-## Step 2: Configure the Database
+## Step 2: Installation
 
-Magento 2 requires a database to store its data. Before proceeding with the installation, you need to configure the
-database settings.
+Post Composer package installation, your directory should resemble:
 
-Start by creating a new database for your Magento 2 installation. You can use a tool like phpMyAdmin or the command line
-to create the database.
-
-Next, open the `app/etc/env.php` file in your Magento 2 installation directory. Look for the following section:
-
-```php
-'db' => [
-    'table_prefix' => '',
-    'connection' => [
-        'default' => [
-            'host' => 'localhost',
-            'dbname' => 'magento',
-            'username' => 'root',
-            'password' => '',
-            'active' => '1'
-        ]
-    ]
-],
+```shell
+YourWorkingDirectory
+|- CHANGELOG.md
+|- LICENSE.txt
+|- app/
+|- composer.json
+|- generated/
+|- nginx.conf.sample
+|- pub/
+|- vendor/
+|- COPYING.txt
+|- LICENSE_AFL.txt
+|- auth.json.sample
+|- composer.lock
+|- grunt-config.json.sample
+|- package.json.sample
+|- setup/
+|- Gruntfile.js.sample
+|- SECURITY.md
+|- bin/
+|  |- magento
+|- dev/
+|- lib/
+|- phpserver/
+|- var/
 ```
 
-Update the database settings according to your environment. Replace `'localhost'` with the hostname of your database
-server, `'magento'` with the name of your database, `'root'` with the username, and `''` with the password. Leave
-the `'table_prefix'` field empty unless you want to specify a prefix for your Magento tables.
+You can now install Magento's Database and set up the connected services, like Elasticsearch/OpenSearch or Redis.
+Although Magento doesn't require Redis, it is highly recommended to use it up front for your Session and Config Cache
+Storage. To install Magento, we can use Magento's built-in Command-Line-Tool `bin/magento`.
 
-## Step 3: Run the Installation Wizard
+The following command installs the Magento Database, configures Elasticsearch as the Search Engine, RabbitMQ for async
+processes, and uses Redis to store sessions, config cache, and the full page cache in separate internal databases. 
+All configuration can be adjusted later. Run `bin/magento setup:install --help` to see the full list of available
+parameters.
 
-Once the database is configured, you can run the Magento 2 installation wizard. Open your web browser and navigate to
-the URL where you placed your Magento 2 files.
+Please create a database in MySQL or MariaDB to contain your new Mage-OS or Magento installation.
 
-You will be greeted with the Magento 2 installation wizard. Follow the on-screen instructions to complete the
-installation process. Make sure to provide the necessary information, such as your store name, admin email, username,
-and password.
+```shell
+bin/magento setup:install \
+    --amqp-host=RABBIT_MQ_HOST \
+    --amqp-port=RABBIT_MQ_PORT \
+    --amqp-user=RABBIT_MQ_USER \
+    --amqp-password=RABBIT_MQ_PASSWORD \
+    --db-host=DATABASE_HOST \
+    --db-name=DATABASE_NAME \
+    --db-user=DATABASE_USER \
+    --db-password=DATABASE_PASSWORD \
+    --search-engine=opensearch \
+    --opensearch-host=OPENSEARCH_HOST \
+    --opensearch-port=OPENSEARCH_PORT \
+    --opensearch-index-prefix=OPENSEARCH_INDEX_PREFIX \
+    --opensearch-timeout=15 \
+    --session-save=redis \
+    --session-save-redis-host=REDIS_HOST \
+    --session-save-redis-port=REDIS_PORT \
+    --session-save-redis-db=0 \
+    --session-save-redis-max-concurrency=20 \
+    --cache-backend=redis \
+    --cache-backend-redis-server=REDIS_HOST \
+    --cache-backend-redis-db=1 \
+    --cache-backend-redis-port=REDIS_PORT \
+    --page-cache=redis \
+    --page-cache-redis-server=REDIS_HOST \
+    --page-cache-redis-db=2 \
+    --page-cache-redis-port=REDIS_PORT
+```
 
-During the installation, Magento 2 will perform various database operations and install the necessary tables. After the
-installation is complete, you will be redirected to the Magento admin panel.
+### Some additional steps
 
-## Step 4: Enable the Magento 2 Cron Job
+After the installation completes, set your site URL:
 
-Magento 2 relies on a cron job to perform scheduled tasks, such as indexing, cache flushing, and sending email
-notifications. To enable the Magento 2 cron job, you need to add a cron job entry to your server.
+```bash
+bin/magento config:set web/unsecure/base_url "https://www.example.com"
+bin/magento config:set web/secure/base_url "https://www.example.com"
+
+bin/magento config:set web/secure/use_in_frontend 1
+bin/magento config:set web/secure/use_in_adminhtml 1
+```
+
+Enable URL rewrites:
+
+```bash
+bin/magento config:set web/seo/use_rewrites 1
+```
+
+Reindex all indexers and flush the cache:
+
+```bash
+bin/magento indexer:reindex
+bin/magento cache:flush
+```
+
+## Step 3: Enable the Magento 2 Cron Job
+
+Mage-OS relies on a cron job to perform scheduled tasks, such as indexing, cache flushing, and sending email
+notifications. To enable the Mage-OS cron job, you need to add a cron job entry to your server.
 
 Open your command line interface and run the following command:
 
-```bash
-crontab -e
+```shell
+bin/magento cron:install
 ```
 
-This command will open the cron job configuration file. Add the following line to the file:
+Verify the command's success with:
 
-```bash
-* * * * * <path-to-php> <magento-root>/bin/magento cron:run >> <magento-root>/var/log/cron.log
+```shell
+crontab -l
 ```
 
-Replace `<path-to-php>` with the path to your PHP binary and `<magento-root>` with the path to your Magento 2
-installation directory.
+You should see output like:
 
-Save the file and exit the editor. The cron job will now run every minute and execute the Magento 2 cron tasks.
+```shell
+#~ MAGENTO START 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
+* * * * * /usr/bin/php /var/www/html/bin/magento cron:run 2>&1 | grep -v "Ran jobs by schedule" >> /var/www/html/var/log/magento.cron.log
+#~ MAGENTO END 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
+```
 
 ## Conclusion
 
-Congratulations! You have successfully installed Magento 2 on your server. You can now start building your online store
-and customizing it to fit your needs.
+Congratulations! You have successfully installed Mage-OS on your server. You can now start building your online store
+and customizing it to fit your needs. The `setup:install` command from Step 2 should have given you an admin URL.
+Open that and enter the admin username and password you set to log in and start using your new site.
 
-Please refer to the official Magento 2 documentation for more information on how to configure and use Magento 2.
+If you have any trouble installing Mage-OS, please reach out in the #help channel on 
+[http://chat.mage-os.org](http://chat.mage-os.org).
+
+
+## Option: Local Development with Warden
+
+If you're working on MacOS or Linux and want to install Magento locally, we highly recommend the docker-based dev
+environment [warden](https://warden.dev/). Follow the steps below after
+you [installed warden](https://docs.warden.dev/installing.html).
+
+After you run through the steps below, you will have fully configured Magento 2 running locally with Redis, OpenSearch,
+RabbitMQ, MariaDB, SSL, PHP, Xdebug, and Varnish.
+
+> **Note**
+> The steps below are provided by the official warden documentation.
+
+**Create a new environment**
+
+```shell
+warden env-init YOUR_PROJECTNAME magento2
+```
+
+**Sign an SSL certificate for use with the project**
+
+```shell
+warden sign-certificate YOUR_PROJECTNAME.test
+```
+
+**Spin up the environment**
+
+```shell
+warden env up
+```
+
+**Access your shell**
+
+```shell
+warden shell
+```
+
+**Ensure `pub/static` is available**
+
+```shell
+mkdir -p pub/static
+```
+
+**Install the Application**
+
+```shell
+bin/magento setup:install \
+     --backend-frontname=backend \
+     --amqp-host=rabbitmq \
+     --amqp-port=5672 \
+     --amqp-user=guest \
+     --amqp-password=guest \
+     --db-host=db \
+     --db-name=magento \
+     --db-user=magento \
+     --db-password=magento \
+     --search-engine=opensearch \
+     --opensearch-host=opensearch \
+     --opensearch-port=9200 \
+     --opensearch-index-prefix=magento2 \
+     --opensearch-enable-auth=0 \
+     --opensearch-timeout=15 \
+     --http-cache-hosts=varnish:80 \
+     --session-save=redis \
+     --session-save-redis-host=redis \
+     --session-save-redis-port=6379 \
+     --session-save-redis-db=2 \
+     --session-save-redis-max-concurrency=20 \
+     --cache-backend=redis \
+     --cache-backend-redis-server=redis \
+     --cache-backend-redis-db=0 \
+     --cache-backend-redis-port=6379 \
+     --page-cache=redis \
+     --page-cache-redis-server=redis \
+     --page-cache-redis-db=1 \
+     --page-cache-redis-port=6379
+```
+
+**Configure the Application**
+
+```shell
+bin/magento config:set --lock-env web/unsecure/base_url "https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/"
+bin/magento config:set --lock-env web/secure/base_url "https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/"
+bin/magento config:set --lock-env web/secure/offloader_header X-Forwarded-Proto
+bin/magento config:set --lock-env web/secure/use_in_frontend 1
+bin/magento config:set --lock-env web/secure/use_in_adminhtml 1
+bin/magento config:set --lock-env web/seo/use_rewrites 1
+bin/magento config:set --lock-env system/full_page_cache/caching_application 2
+bin/magento config:set --lock-env system/full_page_cache/ttl 604800
+bin/magento config:set --lock-env catalog/search/enable_eav_indexer 1
+bin/magento config:set --lock-env dev/static/sign 0
+bin/magento deploy:mode:set -s developer
+bin/magento cache:disable block_html full_page
+bin/magento indexer:reindex
+bin/magento cache:flush
+bin/magento cache:enable
+```
+
+**Set up an admin user incl. 2FA**
+
+Magento requires admin users to use 2FA. Although the use of 2FA is highly recommended on production sites, developers
+often find it tedious to set it up locally. Mark Shust created a widely
+used [Magento Extension](https://github.com/markshust/magento2-module-disabletwofactorauth) to disable 2FA **locally**.
+
+> **Warning**
+> Don't disable 2FA in internet-facing installations. Your system's protection will suffer otherwise.
+
+```shell
+ADMIN_PASS="$(pwgen -n1 16)"
+ADMIN_USER=localadmin
+
+bin/magento admin:user:create \
+    --admin-password="${ADMIN_PASS}" \
+    --admin-user="${ADMIN_USER}" \
+    --admin-firstname="Local" \
+    --admin-lastname="Admin" \
+    --admin-email="${ADMIN_USER}@example.com"
+printf "u: %s\np: %s\n" "${ADMIN_USER}" "${ADMIN_PASS}"
+
+## Configure 2FA provider
+OTPAUTH_QRI=
+# Python 2: TFA_SECRET=$(python -c "import base64; print base64.b32encode('$(pwgen -A1 128)')" | sed 's/=*$//')
+# Python 3:
+TFA_SECRET=$(python3 -c "import base64; print(base64.b32encode(bytearray('$(pwgen -A1 128)', 'ascii')).decode('utf-8'))" | sed 's/=*$//')
+OTPAUTH_URL=$(printf "otpauth://totp/%s%%3Alocaladmin%%40example.com?issuer=%s&secret=%s" \
+    "${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}" "${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}" "${TFA_SECRET}"
+)
+
+bin/magento config:set --lock-env twofactorauth/general/force_providers google
+bin/magento security:tfa:google:set-secret "${ADMIN_USER}" "${TFA_SECRET}"
+
+printf "%s\n\n" "${OTPAUTH_URL}"
+printf "2FA Authenticator Codes:\n%s\n" "$(oathtool -s 30 -w 10 --totp --base32 "${TFA_SECRET}")"
+
+segno "${OTPAUTH_URL}" -s 4 -o "pub/media/${ADMIN_USER}-totp-qr.png"
+printf "%s\n\n" "https://${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}/media/${ADMIN_USER}-totp-qr.png?t=$(date +%s)"
+```
+
+**Set up an admin user without 2FA**
+
+```shell
+ADMIN_PASS="$(pwgen -n1 16)"
+ADMIN_USER=localadmin
+
+bin/magento admin:user:create \
+    --admin-password="${ADMIN_PASS}" \
+    --admin-user="${ADMIN_USER}" \
+    --admin-firstname="Local" \
+    --admin-lastname="Admin" \
+    --admin-email="${ADMIN_USER}@example.com"
+printf "u: %s\np: %s\n" "${ADMIN_USER}" "${ADMIN_PASS}"
+```
+
+You should now be able to access your site under `https://app.YOUR_PROJECTNAME.test/`.
