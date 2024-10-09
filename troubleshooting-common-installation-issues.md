@@ -1,3 +1,7 @@
+---
+description: Discover solutions to common Magento 2 installation issues with the Mage-OS troubleshooting guide. Learn to resolve database connection errors, file permissions issues, missing PHP extensions, and more.
+keywords: Mage-OS, Magento 2 installation issues, troubleshooting Magento, database connection error, file permissions, missing PHP extensions, memory limit exceeded, Magento installation fixes, Magento server setup, cache clearing
+---
 # Troubleshooting Common Installation Issues
 
 [TOC]
