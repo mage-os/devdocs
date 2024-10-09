@@ -2,11 +2,15 @@
 
 [TOC]
 
-Mage-OS allows the creation of custom shipping carriers to handle various shipping methods for different carriers or logistics providers. A custom shipping carrier can be added by creating a Mage-OS module and configuring the required fields to handle shipping calculations, carrier configurations, and frontend integration.
+Mage-OS allows the creation of custom shipping carriers to handle various shipping methods for
+different carriers or logistics providers. A custom shipping carrier can be added by creating a
+Mage-OS module and configuring the required fields to handle shipping calculations,
+carrier configurations, and frontend integration.
 
 ## Module Setup
 
-The first step in adding a custom shipping carrier is creating the necessary directory structure for the Mage-OS module:
+The first step in adding a custom shipping carrier is creating the necessary directory structure
+for the Mage-OS module:
 
 ```bash
 app/code/MageOS/ShippingCarrier/
@@ -45,7 +49,8 @@ Next, you need to declare your module in `app/code/MageOS/ShippingCarrier/etc/mo
 
 ## Shipping Carrier Configuration
 
-In the `config.xml` file, define the shipping carrier's core settings, such as its active state, title, and allowed countries. Create `app/code/MageOS/ShippingCarrier/etc/config.xml`:
+In the `config.xml` file, define the shipping carrier's core settings, such as its active state,
+title, and allowed countries. Create `app/code/MageOS/ShippingCarrier/etc/config.xml`:
 
 ```xml
 <?xml version="1.0"?>
@@ -76,7 +81,8 @@ Explanation:
 
 # Admin Configuration for Carrier
 
-To allow store administrators to configure the shipping method, we define settings in `app/code/MageOS/ShippingCarrier/etc/adminhtml/system.xml`:
+To allow store administrators to configure the shipping method, we define settings in
+`app/code/MageOS/ShippingCarrier/etc/adminhtml/system.xml`:
 
 ```xml
 <?xml version="1.0"?>
@@ -124,11 +130,13 @@ To allow store administrators to configure the shipping method, we define settin
 </config>
 ```
 
-This configuration allows administrators to enable the carrier, set a title, and configure a handling fee through the Mage-OS admin panel.
+This configuration allows administrators to enable the carrier, set a title, and configure a handling
+fee through the Mage-OS admin panel.
 
 # Shipping Carrier Model
 
-The core logic for the custom shipping carrier is in the CustomCarrier.php model. This class extends Mage-OS's abstract shipping carrier class and implements the shipping calculation and rates.
+The core logic for the custom shipping carrier is in the CustomCarrier.php model.
+This class extends Mage-OS's abstract shipping carrier class and implements the shipping calculation and rates.
 
 ```php
 <?php
@@ -213,12 +221,17 @@ class CustomCarrier extends AbstractCarrier implements CarrierInterface
 
 Explanation:
 
-- collectRates(): Calculates shipping rates based on the quote request and returns them. Here, a fixed rate of 10.00 is used.
+- collectRates(): Calculates shipping rates based on the quote request and returns them.
+  Here, a fixed rate of 10.00 is used.
 - getAllowedMethods(): Returns the allowed shipping methods for this carrier.
 
 # Frontend Integration
 
-Once the backend logic is in place, the custom shipping carrier will automatically appear in the Mage-OS checkout if it's enabled and configured properly. The title and price will be displayed as defined in the carrier configuration.
+Once the backend logic is in place, the custom shipping carrier will automatically appear in the Mage-OS checkout
+if it's enabled and configured properly. The title and price will be displayed as defined in the carrier configuration.
 
 # Conclusion
-This guide walks through the basic setup of a custom shipping carrier in Mage-OS. The carrier integrates with Mage-OS’s shipping framework, allowing you to customize the shipping calculation and display it during the checkout process. You can extend this basic structure to integrate with third-party APIs, offer dynamic shipping rates, or introduce more complex shipping logic based on cart contents or customer information.
+This guide walks through the basic setup of a custom shipping carrier in Mage-OS.
+The carrier integrates with Mage-OS’s shipping framework, allowing you to customize the shipping calculation
+and display it during the checkout process. You can extend this basic structure to integrate with third-party APIs,
+offer dynamic shipping rates, or introduce more complex shipping logic based on cart contents or customer information.
