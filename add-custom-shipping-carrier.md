@@ -1,3 +1,8 @@
+---
+description: Find out how to integrate custom shipping carriers into Mage-OS. Configure new shipping options tailored to your business needs, enhancing your eCommerce platform’s flexibility and functionality.
+keywords: Mage-OS, Mage-OS custom shipping, add shipping carrier, custom shipping method, shipping integration, Mage-OS shipping configuration, Magento carrier setup, Magento shipping module
+communityNote: false
+---
 # Add custom shipping carrier
 
 [TOC]
