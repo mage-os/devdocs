@@ -39,7 +39,7 @@ The first step in the installation process is to download the Mage-OS package. Y
 To download Mage-OS using Composer, open your command line interface and navigate to your project directory. Then, run
 the following command:
 
-```bash
+```shell
 composer create-project --repository-url=https://repo.mage-os.org/ mage-os/project-community-edition .
 ```
 
@@ -49,7 +49,7 @@ This command will download the latest version of Mage-OS and all its dependencie
 
 If you would prefer to use Magento instead of Mage-OS, you can do that by using this command instead:
 
-```bash
+```shell
 composer create-project --repository-url=https://mirror.mage-os.org/ magento/project-community-edition
 ```
 
@@ -132,19 +132,24 @@ Please create a database in MySQL or MariaDB to contain your new Mage-OS or Mage
 
 ```shell
 bin/magento setup:install \
-    --amqp-host=RABBIT_MQ_HOST \
-    --amqp-port=RABBIT_MQ_PORT \
-    --amqp-user=RABBIT_MQ_USER \
-    --amqp-password=RABBIT_MQ_PASSWORD \
     --db-host=DATABASE_HOST \
     --db-name=DATABASE_NAME \
     --db-user=DATABASE_USER \
     --db-password=DATABASE_PASSWORD \
-    --search-engine=opensearch \
-    --opensearch-host=OPENSEARCH_HOST \
-    --opensearch-port=OPENSEARCH_PORT \
-    --opensearch-index-prefix=OPENSEARCH_INDEX_PREFIX \
-    --opensearch-timeout=15 \
+    --base-url=https://www.example.com/ \
+    --base-url-secure=https://www.example.com/ \
+    --backend-frontname=BACKEND_FRONTNAME \
+    --use-secure=1 \
+    --use-secure-admin=1 \
+    --use-rewrites=1
+```
+
+### Some additional parameters
+
+#### Redis
+If you have installed Redis, you can add the following parameters to the above `bin/magento setup:install` command
+
+```shell
     --session-save=redis \
     --session-save-redis-host=REDIS_HOST \
     --session-save-redis-port=REDIS_PORT \
@@ -152,35 +157,80 @@ bin/magento setup:install \
     --session-save-redis-max-concurrency=20 \
     --cache-backend=redis \
     --cache-backend-redis-server=REDIS_HOST \
-    --cache-backend-redis-db=1 \
     --cache-backend-redis-port=REDIS_PORT \
+    --cache-backend-redis-db=1 \
     --page-cache=redis \
     --page-cache-redis-server=REDIS_HOST \
-    --page-cache-redis-db=2 \
-    --page-cache-redis-port=REDIS_PORT
+    --page-cache-redis-port=REDIS_PORT \
+    --page-cache-redis-db=2
+```
+
+#### RabbitMQ 
+If you have installed RabbitMQ, you can add the following parameters to the above `bin/magento setup:install` command
+
+```shell
+    --amqp-host=RABBIT_MQ_HOST \
+    --amqp-port=RABBIT_MQ_PORT \
+    --amqp-user=RABBIT_MQ_USER \
+    --amqp-password=RABBIT_MQ_PASSWORD
+```
+
+#### Elasticsearch
+If you have installed Elasticsearch, you can add the following parameters to the above `bin/magento setup:install` command
+
+```shell
+    --search-engine=elasticsearch7 \
+    --elasticsearch-host="$OPENSEARCH_HOST" \
+    --elasticsearch-port="$OPENSEARCH_PORT"
+```
+
+#### Opensearch
+If you have installed Opensearch, you can add the following parameters to the above `bin/magento setup:install` command
+
+```shell
+    --search-engine=opensearch \
+    --opensearch-host=OPENSEARCH_HOST \
+    --opensearch-port=OPENSEARCH_PORT \
+    --opensearch-index-prefix=OPENSEARCH_INDEX_PREFIX \
+    --opensearch-timeout=15
+```
+#### Admin User
+If you want to create an Admin User during the installation, you can add the following parameters to the above `bin/magento setup:install` command
+
+```shell
+    --admin-firstname=ADMIN_FIRSTNAME \
+    --admin-lastname=ADMIN_LASTNAME \
+    --admin-email=ADMIN_EMAIL \
+    --admin-user=ADMIN_USER \
+    --admin-password=ADMIN_PASSWORD
+```
+
+#### Store Configuration
+If you want to configure some base store settings, you can add the following parameters to the above `bin/magento setup:install` command
+
+```shell
+    --language=languageCode_countryCode \
+    --currency=CURRENCY \
+    --timezone=TIMEZONE
+```
+Example:
+```shell
+    --language=en_US \
+    --currency=USD \
+    --timezone=America/New_York
 ```
 
 ### Some additional steps
 
-After the installation completes, set your site URL:
+After the installation completes:
 
-```bash
-bin/magento config:set web/unsecure/base_url "https://www.example.com"
-bin/magento config:set web/secure/base_url "https://www.example.com"
-
-bin/magento config:set web/secure/use_in_frontend 1
-bin/magento config:set web/secure/use_in_adminhtml 1
+set _developer mode_ (only if you are in local environment)
+```shell
+bin/magento deploy:mode:set developer
 ```
 
-Enable URL rewrites:
-
-```bash
-bin/magento config:set web/seo/use_rewrites 1
-```
-
-Reindex all indexers and flush the cache:
-
-```bash
+reindex all indexes and flush the cache
+```shell
 bin/magento indexer:reindex
 bin/magento cache:flush
 ```
