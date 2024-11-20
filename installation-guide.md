@@ -180,8 +180,8 @@ If you have installed Elasticsearch, you can add the following parameters to the
 
 ```shell
     --search-engine=elasticsearch7 \
-    --elasticsearch-host="$OPENSEARCH_HOST" \
-    --elasticsearch-port="$OPENSEARCH_PORT"
+    --elasticsearch-host=ELASTICSEARCH_HOST \
+    --elasticsearch-port=ELASTICSEARCH_PORT
 ```
 
 #### Opensearch
