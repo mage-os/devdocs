@@ -23,6 +23,18 @@ Before installation, ensure your server fulfills the following requirements:
 - Web Server: Apache 2.4 or nginx 1.24
 - Composer 2.5
 
+| Software prerequisite | Column 2 | Column 3 | Column 4 | Column 5 | Column 6 |
+|----------|----------|----------|----------|----------|----------|
+| Composer | Data     | Data     | Data     | Data     | Data     |
+| Row 2    | Data     | Data     | Data     | Data     | Data     |
+| Row 3    | Data     | Data     | Data     | Data     | Data     |
+| Row 4    | Data     | Data     | Data     | Data     | Data     |
+| Row 5    | Data     | Data     | Data     | Data     | Data     |
+| Row 6    | Data     | Data     | Data     | Data     | Data     |
+| Row 7    | Data     | Data     | Data     | Data     | Data     |
+| Row 8    | Data     | Data     | Data     | Data     | Data     |
+
+
 **Recommended (Optional):**
 
 - RabbitMQ 3.11
