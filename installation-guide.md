@@ -17,11 +17,11 @@ you will be able to successfully install Mage-OS and start building your online 
 
 Before installation, ensure your server fulfills the following requirements:
 
-- PHP: 8.2 or 8.1
+- PHP: 8.1 to 8.3
 - Database: MySQL 8.0 or MariaDB 10.6
-- Search Engine: Elasticsearch 8.7 or OpenSearch 2.5
+- Search Engine: Elasticsearch 7, 8, or OpenSearch 2.5+
 - Web Server: Apache 2.4 or nginx 1.24
-- Composer 2.5
+- Composer 2.7+
 
 **Recommended (Optional):**
 
@@ -31,6 +31,21 @@ Before installation, ensure your server fulfills the following requirements:
 
 For AWS users, consider using [AWS ElastiCache]((https://aws.amazon.com/elasticache/)) and other services for
 compatibility.
+
+### Recommended software by version
+
+| Software           | 1.0.5         | 1.0.4         | 1.0.3         | 1.0.2         | 1.0.1         | 1.0.0         |
+|--------------------|---------------|---------------|---------------|---------------|---------------|---------------|
+| PHP                | 8.3           | 8.3           | 8.3           | 8.3           | 8.1           | 8.1           |
+| Composer           | 2.7.4         | 2.7.4         | 2.7.4         | 2.7.4         | 2.2.21        | 2.2.21        |
+| MySQL              | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  | mysql:8.0     | mysql:8.0     |
+| Elasticsearch      | 8.11.4        | 8.11.4        | 8.11.4        | 8.11.4        | 8.5.3         | 8.5.3         |
+| RabbitMQ           | 3.13          | 3.13 | 3.13   | 3.13          | 3.9           | 3.9           | 3.9           |
+| Redis              | 7.2           | redis:7.2     | 7.2           | 7.2           | 7.0           | 7.0           |
+| Varnish            | 7.5           | 7.5           | 7.5           | 7.5           | 7.3           | 7.3           |
+| Nginx              | 1.26          | 1.26          | 1.26          | 1.26          | 1.22          | 1.22          |
+| OS                 | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest |
+| Release Date       | 2024-10-09    | 2024-08-20    | 2024-07-23    | 2024-07-18    | 2023-10-11    | 2023-10-10    |
 
 ## Step 1: Download Mage-OS
 
