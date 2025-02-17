@@ -77,6 +77,12 @@ the [GitHub Flavored Markdown documentation](https://help.github.com/articles/gi
 
 ## Contribution Guidelines
 
+This repository is part of a 2-repositores project structure:
+- https://github.com/mage-os/devdocs-website has all the software
+- https://github.com/mage-os/devdocs as all the documentation
+
+If you want to build devdocs locally or understand more on the build process, please refer to https://github.com/mage-os/devdocs-website too.
+
 If you are submitting documentation for the **current stable release**, submit it to the corresponding branch. For
 example, documentation for Mage-OS 2.5.6 would be submitted to the `2.5.6` branch. Documentation intended for the next
 release of Mage-OS should be submitted to the `main` branch.
