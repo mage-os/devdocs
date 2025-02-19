@@ -87,13 +87,11 @@ php bin/magento cron:status
 This command will display a table containing information about each cron job, including the job code, status, created
 date, scheduled date, executed date, and finished date.
 
-If you need to remove a specific job from the cron schedule, you can do so with the following command:
+If you need to remove the tasks from crontab, you can do so with the following command:
 
 ```bash
-php bin/magento cron:remove <job_code>
+php bin/magento cron:remove
 ```
-
-Replace `<job_code>` with the code of the job you wish to remove.
 
 ## Cron Groups
 Magento 2 uses cron groups to manage related tasks together. A cron group is a set of cron jobs that are managed as a
