@@ -39,7 +39,7 @@ compatibility.
 | PHP            | 8.4           | 8.3           | 8.3           | 8.3           |
 | Composer       | 2.8.8         | 2.7.4         | 2.7.4         | 2.7.4         |
 | Database       | mariadb:11.4  | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  |
-| Search engine  | Os:2.19.1     | Es 8.11.4     | Es 8.11.4     | Es 8.11.4     |
+| Search engine  | OS:2.19.1     | ES 8.11.4     | ES 8.11.4     | ES 8.11.4     |
 | RabbitMQ       | 4.0           | 3.13          | 3.13          | 3.13          |
 | Redis          | 7.2           | 7.2           | 7.2           | redis:7.2     |
 | Varnish        | 7.6           | 7.5           | 7.5           | 7.5           |
@@ -52,7 +52,7 @@ compatibility.
 | PHP            | 8.3           | 8.3           | 8.1           | 8.1           |
 | Composer       | 2.7.4         | 2.7.4         | 2.2.21        | 2.2.21        |
 | Database       | mariadb:10.6  | mariadb:10.6  | mysql:8.0     | mysql:8.0     |
-| Search engine  | Es 8.11.4     | Es 8.11.4     | Es 8.5.3      | Es 8.5.3      |
+| Search engine  | ES 8.11.4     | ES 8.11.4     | ES 8.5.3      | ES 8.5.3      |
 | RabbitMQ       | 3.13          | 3.9           | 3.9           | 3.9           |
 | Redis          | 7.2           | 7.2           | 7.0           | 7.0           |
 | Varnish        | 7.5           | 7.5           | 7.3           | 7.3           |
@@ -60,8 +60,7 @@ compatibility.
 | OS             | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest |
 | Release Date   | 2024-07-23    | 2024-07-18    | 2023-10-11    | 2023-10-10    |
 
-ES - Elasticsearch
-OS - Opensearch
+ES - Elasticsearch, OS - Opensearch
 
 ## Step 1: Download Mage-OS
 
