@@ -41,7 +41,7 @@ compatibility.
 | Database       | mariadb:11.4  | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  |
 | Search engine  | OS:2.19.1     | ES 8.11.4     | ES 8.11.4     | ES 8.11.4     |
 | RabbitMQ       | 4.0           | 3.13          | 3.13          | 3.13          |
-| Redis          | 7.2           | 7.2           | 7.2           | redis:7.2     |
+| Redis          | 7.2           | 7.2           | 7.2           | 7.2           |
 | Varnish        | 7.6           | 7.5           | 7.5           | 7.5           |
 | Nginx          | 1.26          | 1.26          | 1.26          | 1.26          |
 | OS             | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest |
