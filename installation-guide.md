@@ -3,6 +3,7 @@ description: Learn how to install Mage-OS with this comprehensive guide. Include
 keywords: Mage-OS installation, Mage-OS setup, Mage-OS prerequisites, eCommerce platform, system requirements, Mage-OS installation guide, Mage-OS documentation, install Mage-OS, Mage-OS troubleshooting.
 communityNote: false
 ---
+
 # Installation Guide for Mage-OS
 
 [TOC]
@@ -29,36 +30,36 @@ Before installation, ensure your server fulfills the following requirements:
 - Redis 7.0
 - Varnish 7.3
 
-For AWS users, consider using [AWS ElastiCache]((https://aws.amazon.com/elasticache/)) and other services for
+For AWS users, consider using [AWS ElastiCache](<(https://aws.amazon.com/elasticache/)>) and other services for
 compatibility.
 
 ### Recommended software by version
 
-| Software       | 1.1.0         | 1.0.6         | 1.0.5         | 1.0.4         |
-|----------------|---------------|---------------|---------------|---------------|
-| PHP            | 8.4           | 8.3           | 8.3           | 8.3           |
-| Composer       | 2.8.8         | 2.7.4         | 2.7.4         | 2.7.4         |
-| Database       | mariadb:11.4  | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  |
-| Search engine  | OS:2.19.1     | ES 8.11.4     | ES 8.11.4     | ES 8.11.4     |
-| RabbitMQ       | 4.0           | 3.13          | 3.13          | 3.13          |
-| Redis          | 7.2           | 7.2           | 7.2           | 7.2           |
-| Varnish        | 7.6           | 7.5           | 7.5           | 7.5           |
-| Nginx          | 1.26          | 1.26          | 1.26          | 1.26          |
-| OS             | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest |
-| Release Date   | 2025-04-15    | 2025-02-12    | 2024-10-09    | 2024-08-20    |
+| Software      | 1.2.0         | 1.1.1         | 1.1.0         | 1.0.6         | 1.0.5         |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| PHP           | 8.4           | 8.4           | 8.4           | 8.3           | 8.3           |
+| Composer      | 2.8.8         | 2.8.8         | 2.8.8         | 2.7.4         | 2.7.4         |
+| Database      | mysql:8.4     | mysql:8.4     | mysql:8.4     | mariadb:10.6  | mariadb:10.6  |
+| Search engine | OS:2.19.1     | OS:2.19.1     | OS:2.19.1     | ES 8.11.4     | ES 8.11.4     |
+| RabbitMQ      | 4.0           | 4.0           | 4.0           | 3.13          | 3.13          |
+| Redis         | 7.2           | 7.2           | 7.2           | 7.2           | 7.2           |
+| Varnish       | 7.6           | 7.6           | 7.6           | 7.5           | 7.5           |
+| Nginx         | 1.26          | 1.26          | 1.26          | 1.26          | 1.26          |
+| OS            | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest |
+| Release Date  | 2025-06-17    | 2025-04-22    | 2025-04-15    | 2025-02-12    | 2024-10-09    |
 
-| Software       | 1.0.3         | 1.0.2         | 1.0.1         | 1.0.0         |
-|----------------|---------------|---------------|---------------|---------------|
-| PHP            | 8.3           | 8.3           | 8.1           | 8.1           |
-| Composer       | 2.7.4         | 2.7.4         | 2.2.21        | 2.2.21        |
-| Database       | mariadb:10.6  | mariadb:10.6  | mysql:8.0     | mysql:8.0     |
-| Search engine  | ES 8.11.4     | ES 8.11.4     | ES 8.5.3      | ES 8.5.3      |
-| RabbitMQ       | 3.13          | 3.9           | 3.9           | 3.9           |
-| Redis          | 7.2           | 7.2           | 7.0           | 7.0           |
-| Varnish        | 7.5           | 7.5           | 7.3           | 7.3           |
-| Nginx          | 1.26          | 1.26          | 1.22          | 1.22          |
-| OS             | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest |
-| Release Date   | 2024-07-23    | 2024-07-18    | 2023-10-11    | 2023-10-10    |
+| Software      | 1.0.4         | 1.0.3         | 1.0.2         | 1.0.1         | 1.0.0         |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| PHP           | 8.3           | 8.3           | 8.3           | 8.1           | 8.1           |
+| Composer      | 2.7.4         | 2.7.4         | 2.7.4         | 2.2.21        | 2.2.21        |
+| Database      | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  | mysql:8.0     | mysql:8.0     |
+| Search engine | ES 8.11.4     | ES 8.11.4     | ES 8.11.4     | ES 8.5.3      | ES 8.5.3      |
+| RabbitMQ      | 3.13          | 3.13          | 3.9           | 3.9           | 3.9           |
+| Redis         | 7.2           | 7.2           | 7.2           | 7.0           | 7.0           |
+| Varnish       | 7.5           | 7.5           | 7.5           | 7.3           | 7.3           |
+| Nginx         | 1.26          | 1.26          | 1.26          | 1.22          | 1.22          |
+| OS            | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest | ubuntu-latest |
+| Release Date  | 2024-08-20    | 2024-07-23    | 2024-07-18    | 2023-10-11    | 2023-10-10    |
 
 ES - Elasticsearch, OS - Opensearch
 
@@ -154,7 +155,7 @@ Although Magento doesn't require Redis, it is highly recommended to use it up fr
 Storage. To install Magento, we can use Magento's built-in Command-Line-Tool `bin/magento`.
 
 The following command installs the Magento Database, configures Elasticsearch as the Search Engine, RabbitMQ for async
-processes, and uses Redis to store sessions, config cache, and the full page cache in separate internal databases. 
+processes, and uses Redis to store sessions, config cache, and the full page cache in separate internal databases.
 All configuration can be adjusted later. Run `bin/magento setup:install --help` to see the full list of available
 parameters.
 
@@ -177,6 +178,7 @@ bin/magento setup:install \
 ### Some additional parameters
 
 #### Redis
+
 If you have installed Redis, you can add the following parameters to the above `bin/magento setup:install` command
 
 ```shell
@@ -195,7 +197,8 @@ If you have installed Redis, you can add the following parameters to the above `
     --page-cache-redis-db=2
 ```
 
-#### RabbitMQ 
+#### RabbitMQ
+
 If you have installed RabbitMQ, you can add the following parameters to the above `bin/magento setup:install` command
 
 ```shell
@@ -206,6 +209,7 @@ If you have installed RabbitMQ, you can add the following parameters to the abov
 ```
 
 #### Elasticsearch
+
 If you have installed Elasticsearch, you can add the following parameters to the above `bin/magento setup:install` command
 
 ```shell
@@ -215,6 +219,7 @@ If you have installed Elasticsearch, you can add the following parameters to the
 ```
 
 #### Opensearch
+
 If you have installed Opensearch, you can add the following parameters to the above `bin/magento setup:install` command
 
 ```shell
@@ -224,7 +229,9 @@ If you have installed Opensearch, you can add the following parameters to the ab
     --opensearch-index-prefix=OPENSEARCH_INDEX_PREFIX \
     --opensearch-timeout=15
 ```
+
 #### Admin User
+
 If you want to create an Admin User during the installation, you can add the following parameters to the above `bin/magento setup:install` command
 
 ```shell
@@ -236,6 +243,7 @@ If you want to create an Admin User during the installation, you can add the fol
 ```
 
 #### Store Configuration
+
 If you want to configure some base store settings, you can add the following parameters to the above `bin/magento setup:install` command
 
 ```shell
@@ -243,7 +251,9 @@ If you want to configure some base store settings, you can add the following par
     --currency=CURRENCY \
     --timezone=TIMEZONE
 ```
+
 Example:
+
 ```shell
     --language=en_US \
     --currency=USD \
@@ -255,11 +265,13 @@ Example:
 After the installation completes:
 
 set _developer mode_ (only if you are in local environment)
+
 ```shell
 bin/magento deploy:mode:set developer
 ```
 
 reindex all indexes and flush the cache
+
 ```shell
 bin/magento indexer:reindex
 bin/magento cache:flush
@@ -296,9 +308,8 @@ Congratulations! You have successfully installed Mage-OS on your server. You can
 and customizing it to fit your needs. The `setup:install` command from Step 2 should have given you an admin URL.
 Open that and enter the admin username and password you set to log in and start using your new site.
 
-If you have any trouble installing Mage-OS, please reach out in the #help channel on 
+If you have any trouble installing Mage-OS, please reach out in the #help channel on
 [http://chat.mage-os.org](http://chat.mage-os.org).
-
 
 ## Option: Local Development with Warden
 
