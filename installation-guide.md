@@ -39,7 +39,7 @@ compatibility.
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | PHP           | 8.4           | 8.4           | 8.4           | 8.3           | 8.3           |
 | Composer      | 2.8.8         | 2.8.8         | 2.8.8         | 2.7.4         | 2.7.4         |
-| Database      | mysql:8.4     | mysql:8.4     | mysql:8.4     | mariadb:10.6  | mariadb:10.6  |
+| Database      | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  | mariadb:10.6  |
 | Search engine | OS:2.19.1     | OS:2.19.1     | OS:2.19.1     | ES 8.11.4     | ES 8.11.4     |
 | RabbitMQ      | 4.0           | 4.0           | 4.0           | 3.13          | 3.13          |
 | Redis         | 7.2           | 7.2           | 7.2           | 7.2           | 7.2           |
