@@ -69,9 +69,9 @@ modules that your module depends on. In this case, it depends on `Magento_Cms`.
 ## Module Configuration
 
 To add configuration settings for your module, create a configuration XML file in your module's `etc` directory. For
-example, if your module is named `Vendor_Module`, create a file named `module_config.xml`.
+example, if your module is named `Vendor_Module`, create a file named `config.xml`.
 
-Here's an example of a `module_config.xml` file:
+Here's an example of a `config.xml` file:
 
 ```xml
 <?xml version="1.0"?>
@@ -214,7 +214,7 @@ class CustomBlock extends Template
 }
 ```
 
-3. Create a template file, e.g., `custom_template.phtml`. Here's an example:
+3. Create a template file, e.g., `app/code/Vendor/Module/view/frontend/templates/custom_template.phtml`. Here's an example:
 
 ```html
 <h1><?php echo $block->getCustomData(); ?></h1>
@@ -266,6 +266,7 @@ In this example, we're creating a table named `custom_table` with three columns:
 ```
 bin/magento setup:db-declaration:generate-whitelist --module-name=Vendor_Module
 ```
+
 4. Run the setup upgrade command to apply your schema changes:
 
 ```shell
@@ -361,7 +362,8 @@ class CustomType implements ResolverInterface
 
 ```graphql
 type Query {
-    customData: CustomType @resolver(class: "Vendor\\Module\\Model\\Resolver\\CustomType")
+  customData: CustomType
+    @resolver(class: "Vendor\\Module\\Model\\Resolver\\CustomType")
 }
 ```
 
