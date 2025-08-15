@@ -1,3 +1,9 @@
+---
+description: A comprehensive guide to Mage-OS module development. Covers module structure, registration, configuration, event observers, custom controllers, blocks, templates, database setup, API integration, custom GraphQL types, and testing. Requires PHP and Mage-OS knowledge.
+keywords: Mage-OS module development, Mage-OS, module structure, module registration, module configuration, event observers, custom controllers, blocks and templates, database setup, API integration, GraphQL types, module testing, Magento 2 PHP development
+communityNote: false
+---
+
 # Module Development Documentation
 
 [TOC]
@@ -248,15 +254,19 @@ declarative schema script, follow these steps:
 2. Implement the necessary logic inside the file. Here's an example:
 
 ```xml
-<table name="custom_table" resource="default" engine="innodb"
-           comment="Custom Table">
-    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
-    <column xsi:type="varchar" name="name" nullable="false" length="255" default="" comment="name"/>
-    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
-    <constraint xsi:type="primary" referenceId="PRIMARY">
-        <column name="entity_id"/>
-    </constraint>
-</table>
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="custom_table" resource="default" engine="innodb"
+            comment="Custom Table">
+        <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" default="" comment="name"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>
 ```
 
 In this example, we're creating a table named `custom_table` with three columns: `entity_id`, `name`, and `created_at`.
