@@ -1,3 +1,9 @@
+---
+description: A comprehensive guide to Mage-OS module development. Covers module structure, registration, configuration, event observers, custom controllers, blocks, templates, database setup, API integration, custom GraphQL types, and testing. Requires PHP and Mage-OS knowledge.
+keywords: Mage-OS module development, Mage-OS, module structure, module registration, module configuration, event observers, custom controllers, blocks and templates, database setup, API integration, GraphQL types, module testing, Magento 2 PHP development
+communityNote: false
+---
+
 # Module Development Documentation
 
 [TOC]
@@ -69,9 +75,9 @@ modules that your module depends on. In this case, it depends on `Magento_Cms`.
 ## Module Configuration
 
 To add configuration settings for your module, create a configuration XML file in your module's `etc` directory. For
-example, if your module is named `Vendor_Module`, create a file named `module_config.xml`.
+example, if your module is named `Vendor_Module`, create a file named `config.xml`.
 
-Here's an example of a `module_config.xml` file:
+Here's an example of a `config.xml` file:
 
 ```xml
 <?xml version="1.0"?>
@@ -214,7 +220,7 @@ class CustomBlock extends Template
 }
 ```
 
-3. Create a template file, e.g., `custom_template.phtml`. Here's an example:
+3. Create a template file, e.g., `app/code/Vendor/Module/view/frontend/templates/custom_template.phtml`. Here's an example:
 
 ```html
 <h1><?php echo $block->getCustomData(); ?></h1>
@@ -248,15 +254,19 @@ declarative schema script, follow these steps:
 2. Implement the necessary logic inside the file. Here's an example:
 
 ```xml
-<table name="custom_table" resource="default" engine="innodb"
-           comment="Custom Table">
-    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
-    <column xsi:type="varchar" name="name" nullable="false" length="255" default="" comment="name"/>
-    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
-    <constraint xsi:type="primary" referenceId="PRIMARY">
-        <column name="entity_id"/>
-    </constraint>
-</table>
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="custom_table" resource="default" engine="innodb"
+            comment="Custom Table">
+        <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" default="" comment="name"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>
 ```
 
 In this example, we're creating a table named `custom_table` with three columns: `entity_id`, `name`, and `created_at`.
@@ -266,6 +276,7 @@ In this example, we're creating a table named `custom_table` with three columns:
 ```
 bin/magento setup:db-declaration:generate-whitelist --module-name=Vendor_Module
 ```
+
 4. Run the setup upgrade command to apply your schema changes:
 
 ```shell
@@ -361,7 +372,8 @@ class CustomType implements ResolverInterface
 
 ```graphql
 type Query {
-    customData: CustomType @resolver(class: "Vendor\\Module\\Model\\Resolver\\CustomType")
+  customData: CustomType
+    @resolver(class: "Vendor\\Module\\Model\\Resolver\\CustomType")
 }
 ```
 
