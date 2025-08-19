@@ -1,10 +1,16 @@
+---
+description: A clear, beginner-friendly overview of the Mage-OS and PHP project directory structure, explaining each folder’s purpose, how to navigate the codebase, and best practices for organized development.
+keywords: Mage-OS, directory structure, Magento 2, PHP project layout, app directory, vendor libraries
+communityNote: false
+---
+
 # Directory Structure Documentation
 
 [TOC]
 
 ## Introduction
 
-This documentation provides an in-depth understanding of the directory structure used in PHP and Magento 2 projects. A
+This documentation provides an in-depth understanding of the directory structure used in Mage-OS and Magento 2 projects. A
 well-organized and logical directory structure is crucial for efficient development and maintenance of complex
 applications. By following the recommended structure, developers can easily locate, modify, and extend code while
 adhering to best practices. This documentation will outline the main directories, their purposes, and provide specific
@@ -16,62 +22,36 @@ The root directory of a PHP or Magento 2 project contains essential files and di
 function. Let's examine the common files and directories found in this root directory:
 
 1. **app**: This directory contains the majority of your application code and configuration files. It is the heart of
-   the Magento 2 application and contains several subdirectories, including:
+   the Mage-OS / Magento 2 application and contains several subdirectories, including:
 
-    - **code**: This directory is home to your custom PHP modules, organized by vendor name and module name. For
-      instance, if you have a module named "MyModule" developed by "MyVendor," the directory structure would
-      be `app/code/MyVendor/MyModule`.
+   - **code**: This directory is home to your custom PHP modules, organized by vendor name and module name. For
+     instance, if you have a module named "MyModule" developed by "MyVendor," the directory structure would
+     be `app/code/MyVendor/MyModule`.
 
-    - **design**: This directory contains your theme-specific files, such as HTML templates, CSS stylesheets, and
-      JavaScript files. The structure follows the same pattern as the `code` directory, with themes organized by vendor
-      name and theme name.
+   - **design**: This directory contains your theme-specific files, such as HTML templates, CSS stylesheets, and
+     JavaScript files. The structure follows the same pattern as the `code` directory, with themes organized by vendor
+     name and theme name. For storefront themes `frontend` folder will be used and for admin themes `adminhtml` need to be created.
 
-    - **etc**: The `etc` directory holds configuration files for various aspects of your application, including module
-      configuration, database scripts, and system configuration settings. The structure mirrors the `code` directory,
-      with subdirectories for each module and theme.
+   - **i18n**: This directory is used for internationalization (i18n) purposes. It contains translation files for
+     different languages, allowing your application to be easily localized. Translations are organized by module and
+     theme.
 
-    - **i18n**: This directory is used for internationalization (i18n) purposes. It contains translation files for
-      different languages, allowing your application to be easily localized. Translations are organized by module and
-      theme.
+2. **vendor**: This directory is created when you install dependencies using Composer. It contains all the third-party libraries and modules your project depends on. It is generally recommended not to modify files in this directory directly.
 
-    - **view**: The `view` directory is where you define the front-end presentation of your application. It contains
-      subdirectories like `frontend` and `adminhtml` for different areas of your application. Each area has its own set
-      of directories for layout, templates, and web assets.
+3. **bin**: This directory contains command-line scripts used for various development tasks. For Magento 2 projects, it includes useful scripts like `magento` for running CLI commands and `setup` for installing and upgrading the application.
 
-    - **vendor**: This directory is created when you install dependencies using Composer. It contains all the
-      third-party libraries and modules your project depends on. It is generally recommended not to modify files in this
-      directory directly.
+4. **dev**: The `dev` directory is used for development-specific tools and configurations. It may contain additional scripts, debugging utilities, or profiling tools.
 
-    - **composer.json**: This file specifies the project's dependencies and other metadata required by Composer for
-      managing dependencies and autoloading.
+5. **setup**: This contains all files which are related to Magento’s installation setup
 
-    - **index.php**: The `index.php` file is the entry point of your Magento 2 application. It initializes the Magento
-      framework and processes incoming requests.
+6. **pub**: This directory houses publicly accessible files that are served directly by the web server. The directory contains the index.php file, which is used to run the application in production mode. It helps protect your project by preventing direct access to the root directory. You’ll also find the generated static files for your Magento theme here.
 
-    - **.htaccess**: This file contains Apache web server configuration directives, such as URL rewrite rules and
-      security settings. It helps control access to files and directories.
+7. **var**: This directory is used for storing various types of data generated by the application at runtime. It typically includes log files, compiled code, caches, sessions, and generated static files. You should ensure this directory is writable by the web server.
 
-2. **bin**: This directory contains command-line scripts used for various development tasks. For Magento 2 projects, it
-   includes useful scripts like `magento` for running CLI commands and `setup` for installing and upgrading the
-   application.
+8. **lib**: This folder contains all of Mage-OS’s core files and vendor libraries. It also includes Mage-OS code that isn’t part of a module.
 
-3. **dev**: The `dev` directory is used for development-specific tools and configurations. It may contain additional
-   scripts, debugging utilities, or profiling tools.
-
-4. **pub**: This directory houses publicly accessible files that are served directly by the web server. It includes
-   files like images, stylesheets, and JavaScript that can be accessed by users. Magento places its static assets in
-   directories like `static`, `media`, and `frontend`.
-
-5. **var**: This directory is used for storing various types of data generated by the application at runtime. It
-   typically includes log files, compiled code, caches, sessions, and generated static files. You should ensure this
-   directory is writable by the web server.
-
-6. **vendor**: Similar to the `vendor` directory in the `app` directory, this directory contains all the third-party
-   libraries and modules your project depends on. It is managed by Composer and should not be modified directly.
+9. **dev**: his folder contains automated functional tests that are executed using the Magento Test Framework.
 
 ## Conclusion
 
-Understanding the directory structure of a PHP or Magento 2 project is crucial for efficient development and
-maintenance. By following the recommended structure outlined in this documentation, developers can easily navigate and
-manage their codebase, resulting in a more organized and maintainable application. Use the provided examples and code
-snippets to gain a deeper understanding of the concepts discussed. Happy coding!
+Understanding the directory structure of a PHP or Mage-OS / Magento 2 project is crucial for efficient development and maintenance. By following the recommended structure outlined in this documentation, developers can easily navigate and manage their codebase, resulting in a more organized and maintainable application. Use the provided examples and code snippets to gain a deeper understanding of the concepts discussed.
