@@ -35,6 +35,19 @@ compatibility.
 
 ### Recommended software by version
 
+| Software      | 1.3.1                   | 1.3.0                   |
+| ------------- |-------------------------|-------------------------|
+| PHP           | 8.4,8.3                 | 8.4, 8.3                |
+| Composer      | 2.8.8                   | 2.8.8                   |
+| Database      | mariadb:11.4, myqsl:8.4 | mariadb:11.4, myqsl:8.4 |
+| Search engine | OS:3                    | OS:3                    |
+| RabbitMQ      | 4.1                     | 4.1                     |
+| Valkey        | 8                       | 8                       |
+| Varnish       | 7.7                     | 7.7                     |
+| Nginx         | 1.28                    | 1.28                    |
+| OS            | ubuntu-latest           | ubuntu-latest           |
+| Release Date  | 2025-09-09              | 2025-08-13              |
+
 | Software      | 1.2.0         | 1.1.1         | 1.1.0         | 1.0.6         | 1.0.5         |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | PHP           | 8.4           | 8.4           | 8.4           | 8.3           | 8.3           |
