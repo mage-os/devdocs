@@ -16,28 +16,26 @@ you will be able to successfully install Mage-OS and start building your online 
 
 ## Prerequisites
 
-Before installation, ensure your server fulfills the following requirements:
-
-- PHP: 8.1 to 8.3
-- Database: MySQL 8.0 or MariaDB 10.6
-- Search Engine: Elasticsearch 7, 8, or OpenSearch 2.5+
-- Web Server: Apache 2.4 or nginx 1.24
-- Composer 2.7+
-
-**Recommended (Optional):**
-
-- RabbitMQ 3.11
-- Redis 7.0
-- Varnish 7.3
-
-For AWS users, consider using [AWS ElastiCache](<(https://aws.amazon.com/elasticache/)>) and other services for
-compatibility.
+Please see the system requirements by version below.
 
 ### Recommended software by version
 
+| Software      | 2.0.0                   |
+| ------------- |-------------------------|
+| PHP           | 8.4, 8.3                |
+| Composer      | 2.8.8                   |
+| Database      | mariadb:11.4, myqsl:8.4 |
+| Search engine | OS:3                    |
+| RabbitMQ      | 4.1                     |
+| Valkey        | 8                       |
+| Varnish       | 7.7                     |
+| Nginx         | 1.28                    |
+| OS            | ubuntu-latest           |
+| Release Date  | 2025-10-16              |
+
 | Software      | 1.3.1                   | 1.3.0                   |
 | ------------- |-------------------------|-------------------------|
-| PHP           | 8.4,8.3                 | 8.4, 8.3                |
+| PHP           | 8.4, 8.3                | 8.4, 8.3                |
 | Composer      | 2.8.8                   | 2.8.8                   |
 | Database      | mariadb:11.4, myqsl:8.4 | mariadb:11.4, myqsl:8.4 |
 | Search engine | OS:3                    | OS:3                    |
