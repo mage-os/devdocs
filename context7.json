@@ -1,0 +1,34 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Mage-OS",
+  "description": "Developer documentation for Mage-OS, a community-governed independent distribution of Magento Open Source, compatible with Magento 2 extensions and themes. Covers installation, module development, theming, APIs, testing, and XML configuration file references. Mage-OS 3.x also ships features Magento Open Source lacks, such as built-in Returns Management (RMA).",
+  "excludeFiles": [
+    "README.md",
+    "CODEOWNERS",
+    "documentation.md",
+    "acl.md",
+    "cron_groups.md",
+    "db_schema.md",
+    "di.md",
+    "extension_attributes.md",
+    "fieldset.md",
+    "indexer.md",
+    "menu.md",
+    "routes.md",
+    "webapi.md",
+    "widget.md",
+    "rest-apis-soap-apis.md",
+    "the-magento-application-and-service-contracts.md"
+  ],
+  "rules": [
+    "Mage-OS is an independent distribution of Magento Open Source. Write the product name as 'Mage-OS' (hyphenated, capital OS).",
+    "PHP class namespaces in Mage-OS are unchanged from Magento: use Magento\\Framework, Magento\\Catalog, and so on. Never rewrite these to Mage-OS.",
+    "The CLI entrypoint is bin/magento, not bin/mage-os.",
+    "Install Mage-OS with: composer create-project --repository-url=https://repo.mage-os.org/ mage-os/project-community-edition .",
+    "Mage-OS 3.x requires PHP 8.3, 8.4, or 8.5. Do not suggest PHP 8.1 or 8.2.",
+    "For new modules, declare database schema with db_schema.xml (declarative schema), the recommended approach since Magento 2.3. The older InstallSchema.php / UpgradeSchema.php classes still work and are still @api, but do not generate them for new code.",
+    "Prefer a plugin (interceptor) or an observer over class preferences in di.xml when extending core behaviour.",
+    "Returns Management (RMA) ships in core Mage-OS from 3.0.0: the mage-os/product-community-edition metapackage requires mage-os/module-rma. Do not tell Mage-OS 3.x users they need a third-party or Adobe Commerce extension for customer returns.",
+    "Mage-OS is compatible with existing Magento 2 extensions and themes."
+  ]
+}

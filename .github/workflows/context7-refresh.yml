@@ -1,0 +1,26 @@
+name: "🔄 - Refresh Context7"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  refresh:
+    name: "🔄 - Trigger Context7 refresh"
+    if: github.repository == 'mage-os/devdocs'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "🔄 - Request re-index of /mage-os/devdocs"
+        env:
+          CONTEXT7_API_KEY: ${{ secrets.CONTEXT7_API_KEY }}
+        run: |
+          if [ -z "$CONTEXT7_API_KEY" ]; then
+            echo "CONTEXT7_API_KEY secret not set; skipping refresh."
+            exit 0
+          fi
+          curl -sS --fail-with-body -X POST https://context7.com/api/v1/refresh \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $CONTEXT7_API_KEY" \
+            -d '{"libraryName": "/mage-os/devdocs"}'
