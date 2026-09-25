@@ -87,7 +87,7 @@ represent the architecture of a PHP and Magento 2 application.
 
 **High-Level System Diagram:**
 
-```
+```plaintext
 +------------------+        +-----------------+        +-----------------+
 |    Frontend      |        |    Backend      |        |     Database    |
 |                  |<------>|                 |<------>|                 |
@@ -97,7 +97,7 @@ represent the architecture of a PHP and Magento 2 application.
 
 **Layered Architecture Diagram:**
 
-```
+```plaintext
 +------------------+
 |   Presentation   |
 |     Layer        |
@@ -115,7 +115,7 @@ represent the architecture of a PHP and Magento 2 application.
 
 **Component Diagram:**
 
-```
+```plaintext
 +-----------------+
 |    Frontend     |
 |    Component    |
@@ -130,7 +130,7 @@ represent the architecture of a PHP and Magento 2 application.
 
 **Sequence Diagram:**
 
-```
+```plaintext
 Frontend -> Backend: Request Product Details
 Backend -> Database: Retrieve Product Data
 Database --> Backend: Return Product Data

@@ -33,7 +33,7 @@ To get started with extension development, you will need the following:
 A Magento 2 extension follows a specific directory structure that Magento recognizes. Below is an example structure for
 a basic extension called "MyExtension":
 
-```
+```plaintext
 MyExtension/
 ├── etc/
 │   ├── module.xml

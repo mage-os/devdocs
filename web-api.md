@@ -44,7 +44,7 @@ curl -X POST \
 Magento's Web API provides a wide range of endpoints to interact with various resources such as customers, products,
 orders, and more. Each endpoint follows a consistent URL structure:
 
-```
+```plaintext
 https://your-magento-installation.com/rest/<version>/<resource>
 ```
 

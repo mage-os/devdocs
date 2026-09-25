@@ -18,7 +18,7 @@ concepts.
 
 A Magento 2 module is organized in the following directory structure:
 
-```
+```plaintext
 app
 └── code
     └── Vendor
@@ -273,7 +273,7 @@ In this example, we're creating a table named `custom_table` with three columns:
 
 3. Run the whitelist generation command:
 
-```
+```bash
 bin/magento setup:db-declaration:generate-whitelist --module-name=Vendor_Module
 ```
 

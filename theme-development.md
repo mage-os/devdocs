@@ -80,7 +80,7 @@ You can specify a preview image for your theme using the following XML configura
 
 Ensure that the specified image file exists in your theme directory. If it doesn't, running `bin/magento setup:upgrade` will produce an error:
 
-```
+```plaintext
 File "app/design/frontend/Acme/MyTheme/media/preview.jpg" does not exist.
 ```
 
