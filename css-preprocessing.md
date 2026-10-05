@@ -196,7 +196,7 @@ preprocessors in these environments, additional setup steps are required.
 
 Example of overriding a LESS file in a Magento 2 custom theme:
 
-```
+```plaintext
 app/design/frontend/MyVendor/my-theme/web/css/source/_extend.less
 ```
 

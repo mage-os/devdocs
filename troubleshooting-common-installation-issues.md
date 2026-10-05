@@ -62,7 +62,7 @@ This ensures the necessary read, write, and execute permissions are set correctl
 Magento 2 relies on various PHP extensions to function properly. If you encounter an error indicating a missing
 extension, you need to install it. Here's an example:
 
-```
+```plaintext
 PHP Extension xsl is not loaded.
 ```
 
@@ -83,7 +83,7 @@ file (`php.ini`).
 
 Locate the `memory_limit` directive and adjust its value to a higher limit. For example:
 
-```
+```ini
 memory_limit = 512M
 ```
 

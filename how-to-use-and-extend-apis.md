@@ -56,7 +56,7 @@ JSON (JavaScript Object Notation) and XML (eXtensible Markup Language).
 By default, Magento 2 APIs return JSON responses. However, you can specify the desired response format by setting
 the `Accept` header in your requests. For example, to request XML responses, you can include the following header:
 
-```
+```http
 Accept: application/xml
 ```
 
@@ -65,7 +65,7 @@ Accept: application/xml
 Magento 2 provides a wide range of pre-defined API endpoints for different resources. These endpoints follow a
 consistent pattern:
 
-```
+```plaintext
 https://example.com/rest/V1/{resource}/{id}
 ```
 
@@ -77,7 +77,7 @@ Where:
 
 Here are some examples of API endpoints:
 
-```
+```http
 GET https://example.com/rest/V1/products
 GET https://example.com/rest/V1/products/10
 POST https://example.com/rest/V1/products
@@ -141,7 +141,7 @@ class CustomProducts implements HttpGetActionInterface
 
 Now, you can access your custom API endpoint using the following URL:
 
-```
+```http
 GET https://example.com/rest/V1/custom-products
 ```
 

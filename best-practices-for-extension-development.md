@@ -12,7 +12,7 @@ provided by Magento to ensure consistency across projects.
 
 Here's a typical directory structure for a Magento 2 extension:
 
-```
+```plaintext
 ├── app
 │   └── code
 │       └── VendorName

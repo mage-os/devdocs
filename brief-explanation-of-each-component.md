@@ -32,7 +32,7 @@ the `VendorName_ModuleName` naming convention.
 
 Example module structure:
 
-```
+```plaintext
 app
 ├── code
 │   └── VendorName
@@ -55,7 +55,7 @@ located in the `app/design` directory and allow for customization and branding o
 
 Example of a theme structure:
 
-```
+```plaintext
 app
 ├── design
 │   └── frontend

@@ -14,7 +14,7 @@ that is easy to read, understand, and maintain.
 A well-organized file structure is crucial for a Magento 2 project. Following a consistent structure helps in easily
 locating and managing files. The recommended file structure for a Magento 2 project is as follows:
 
-```
+```plaintext
 app/
   code/
     <Vendor>/
@@ -87,7 +87,7 @@ tools analyze the code against configured rules and highlight any violations.
 
 For example, to check coding standards using PHP_CodeSniffer, run the following command:
 
-```
+```bash
 vendor/bin/phpcs --standard=PSR12 app/code/Vendor/Module/
 ```
 
@@ -99,7 +99,7 @@ Magento 2 has its own set of coding standards specific to module development. Le
 
 A well-structured module enhances code organization. A typical module follows this structure:
 
-```
+```plaintext
 app/
   code/
     <Vendor>/

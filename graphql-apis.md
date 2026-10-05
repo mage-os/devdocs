@@ -19,7 +19,7 @@ PHP and Magento 2. You'll also need to have a valid authentication token to acce
 To authenticate and obtain an access token, you can use the Magento 2 token-based authentication system. Once you have
 the token, you can include it in the headers of your GraphQL requests as follows:
 
-```
+```http
 Authorization: Bearer <access_token>
 ```
 
@@ -170,7 +170,7 @@ Playground.
 
 To retrieve the GraphQL schema, you can send a request to the following endpoint:
 
-```
+```plaintext
 https://yourmagentoinstallation.com/graphql/schema?query={__schema{types{name}}}
 ```
 

@@ -75,7 +75,7 @@ to extend or modify the behavior of the platform.
 
 Example:
 
-```
+```plaintext
 app/code/Vendor/Module
 ```
 
