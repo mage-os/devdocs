@@ -3,7 +3,7 @@
   "url": "https://context7.com/mage-os/devdocs",
   "public_key": "pk_HsBSv7f4tLBOYsckJH4BP",
   "projectTitle": "Mage-OS",
-  "description": "Developer documentation for Mage-OS, a community-governed independent distribution of Magento Open Source, compatible with Magento 2 extensions and themes. Covers installation, module development, theming, APIs, testing, and XML configuration file references. Mage-OS 3.x also ships features Magento Open Source lacks, such as built-in Returns Management (RMA).",
+  "description": "Developer docs for Mage-OS, a community-driven distribution of Magento Open Source compatible with Magento 2 extensions: install, modules, themes, APIs, XML config and built-in RMA.",
   "excludeFiles": [
     "README.md",
     "CODEOWNERS",
