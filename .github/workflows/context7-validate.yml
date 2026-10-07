@@ -1,0 +1,25 @@
+name: "✅ - Validate context7.json"
+
+on:
+  push:
+    paths:
+      - context7.json
+      - .github/workflows/context7-validate.yml
+  pull_request:
+    paths:
+      - context7.json
+      - .github/workflows/context7-validate.yml
+
+jobs:
+  validate:
+    name: "✅ - Check context7.json against the Context7 schema"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Context7 gives no feedback on an invalid file. After #104 shipped a
+      # description over the 200-character limit, the library kept its
+      # default settings, so catch schema errors here instead.
+      - name: "✅ - Validate"
+        run: pipx run check-jsonschema==0.38.2 --schemafile https://context7.com/schema/context7.json context7.json
